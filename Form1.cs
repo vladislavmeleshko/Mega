@@ -31,7 +31,8 @@ namespace Mega
                     dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                             sP_ListWayBillsResult[i].ConsigneeCity_Name, api.getDateOfShipment(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode),
                                             api.getDateOfReceipt(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode),
-                                            null, api.getLastEvent(sP_ListWayBillsResult[i].WBNumber), api.getDateLastEvent(sP_ListWayBillsResult[i].WBNumber));
+                                            api.getOriginalDeliveryDate(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode),
+                                            api.getLastEvent(sP_ListWayBillsResult[i].WBNumber), api.getDateLastEvent(sP_ListWayBillsResult[i].WBNumber));
             }
             catch(Exception ex)
             {
@@ -50,8 +51,9 @@ namespace Mega
                     dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                             sP_ListWayBillsResult[i].ConsigneeCity_Name, api.getDateOfShipment(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode),
                                             api.getDateOfReceipt(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode),
-                                            null, api.getLastEvent(sP_ListWayBillsResult[i].WBNumber), api.getDateLastEvent(sP_ListWayBillsResult[i].WBNumber));
-            }
+                                            api.getOriginalDeliveryDate(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode),
+                                            api.getLastEvent(sP_ListWayBillsResult[i].WBNumber), api.getDateLastEvent(sP_ListWayBillsResult[i].WBNumber));
+             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);

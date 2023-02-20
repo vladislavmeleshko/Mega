@@ -29,8 +29,8 @@ namespace Mega.classes
         {
             try
             {   if(type_invoice == 0)
-                    return mekus.Me_ListWayBills(login, DateTime.Now.AddDays(-89), DateTime.Now, null, 394, null, false, null);
-                else return mekus.Me_ListWayBills(login, DateTime.Now.AddDays(-89), DateTime.Now, null, null, 394, false, null);
+                    return mekus.Me_ListWayBills(login, DateTime.Now.AddDays(-90), DateTime.Now.AddDays(-1), null, 394, null, false, null);
+                else return mekus.Me_ListWayBills(login, DateTime.Now.AddDays(-90), DateTime.Now.AddDays(-1), null, null, 394, false, null);
             }
             catch(Exception ex)
             {
@@ -101,6 +101,51 @@ namespace Mega.classes
                 if (sP_Invoice_HistoryResult.Length > 0)
                     return sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventDate + " " + sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventTime;
                 else return "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "";
+            }
+        }
+
+        public string getOriginalDeliveryDate(string WBNumber, int AgentCodeShipper, int ConsigneeCityCode)
+        {
+            try
+            {
+                megaAPI.SP_Tariffs_DirectZoneResult[] sP_Tariffs_DirectZoneResults = mekus.me_CentralCitiesTariffs(login, (short)AgentCodeShipper, DateTime.Now);
+
+                for (int i = 0; i < sP_Tariffs_DirectZoneResults.Length; i++)
+                { 
+                    if (ConsigneeCityCode == sP_Tariffs_DirectZoneResults[i].DestCityCode)
+                    {
+                        if (getDateOfShipment(WBNumber, AgentCodeShipper).Length > 0)
+                        {
+                            int? period = sP_Tariffs_DirectZoneResults[i].DeliveryPeriod;
+                            DateTime now = Convert.ToDateTime(getDateOfShipment(WBNumber, AgentCodeShipper));
+                            while (true)
+                            {
+                                if (period == 0)
+                                    break;
+                                if (now.AddDays(1).DayOfWeek == DayOfWeek.Sunday)
+                                {
+                                    now = now.AddDays(1);
+                                    continue;
+                                }
+                                else if (now.AddDays(1).DayOfWeek == DayOfWeek.Saturday)
+                                {
+                                    now = now.AddDays(1);
+                                    continue;
+                                }
+                                now = now.AddDays(1);
+                                period--;
+                            }
+                            return now.ToString("dd.MM.yyyy");
+                        }
+                        else return "";
+                    }
+                }
+                return "";  
             }
             catch (Exception ex)
             {
