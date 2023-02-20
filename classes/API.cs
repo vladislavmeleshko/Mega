@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,43 +110,94 @@ namespace Mega.classes
             }
         }
 
-        public string getOriginalDeliveryDate(string WBNumber, int AgentCodeShipper, int ConsigneeCityCode)
+        public string getOriginalDeliveryDate(string WBNumber, int AgentCodeShipper, int ConsigneeAgentCode, int ConsigneeCityCode)
         {
             try
             {
-                megaAPI.SP_Tariffs_DirectZoneResult[] sP_Tariffs_DirectZoneResults = mekus.me_CentralCitiesTariffs(login, (short)AgentCodeShipper, DateTime.Now);
+                int? period = 0;
+                megaAPI.SP_Invoice_GenerResult[] sP_Invoice = mekus.me_oneInvoice(login, WBNumber);
+                megaAPI.SP_ListCitiesResult[] sP_ListCities = mekus.me_allCitys(login);
+                megaAPI.SP_Tariffs_DirectZoneResult[] sP_Tariffs_DirectZones = mekus.me_CentralCitiesTariffs(login, (short)AgentCodeShipper, null);
+                megaAPI.SP_Agent_ZoneResult[] sP_Agent_Zones = null;
 
-                for (int i = 0; i < sP_Tariffs_DirectZoneResults.Length; i++)
-                { 
-                    if (ConsigneeCityCode == sP_Tariffs_DirectZoneResults[i].DestCityCode)
+                if (getDateOfShipment(WBNumber, AgentCodeShipper) == "")
+                    return "";
+
+                DateTime now = Convert.ToDateTime(getDateOfShipment(WBNumber, AgentCodeShipper));
+                for (int i = 0; i < sP_ListCities.Length; i++)
+                {
+                    if (sP_ListCities[i].CityCode == ConsigneeCityCode && sP_ListCities[i].IsCentral == true)
                     {
-                        if (getDateOfShipment(WBNumber, AgentCodeShipper).Length > 0)
+                        for(int j = 0; j < sP_Tariffs_DirectZones.Length; j++)
                         {
-                            int? period = sP_Tariffs_DirectZoneResults[i].DeliveryPeriod;
-                            DateTime now = Convert.ToDateTime(getDateOfShipment(WBNumber, AgentCodeShipper));
-                            while (true)
+                            if (sP_Tariffs_DirectZones[j].DestCityCode == sP_ListCities[i].CityCode)
                             {
-                                if (period == 0)
-                                    break;
-                                if (now.AddDays(1).DayOfWeek == DayOfWeek.Sunday)
+                                period = sP_Tariffs_DirectZones[j].DeliveryPeriod;
+                                while (true)
                                 {
+                                    if (period == 0)
+                                        break;
+                                    if(now.AddDays(1).DayOfWeek == DayOfWeek.Saturday)
+                                    {
+                                        now = now.AddDays(1);
+                                        continue;
+                                    }
+                                    else if (now.AddDays(1).DayOfWeek == DayOfWeek.Sunday)
+                                    {
+                                        now = now.AddDays(1);
+                                        continue;
+                                    }
                                     now = now.AddDays(1);
-                                    continue;
+                                    period--;
                                 }
-                                else if (now.AddDays(1).DayOfWeek == DayOfWeek.Saturday)
-                                {
-                                    now = now.AddDays(1);
-                                    continue;
-                                }
-                                now = now.AddDays(1);
-                                period--;
+                                return now.ToString("dd.MM.yyyy");
                             }
-                            return now.ToString("dd.MM.yyyy");
                         }
-                        else return "";
+                    }
+                    else if(sP_ListCities[i].CityCode == ConsigneeCityCode && sP_ListCities[i].IsCentral == false)
+                    {
+                        for(int j = 0; j < sP_ListCities.Length; j++)
+                        {
+                            if (sP_ListCities[j].AgentCode == ConsigneeAgentCode && sP_ListCities[j].IsCentral == true)
+                            {
+                                for(int z = 0; z < sP_Tariffs_DirectZones.Length; z++)
+                                {
+                                    if (sP_Tariffs_DirectZones[z].DestCityCode == sP_ListCities[j].CityCode)
+                                    {
+                                        period = sP_Tariffs_DirectZones[z].DeliveryPeriod;
+                                        sP_Agent_Zones = mekus.me_AgentZone(login, (short)ConsigneeAgentCode, null);
+                                        for(int f = 0; f < sP_Agent_Zones.Length; f++)
+                                        {
+                                            if (sP_Agent_Zones[f].CityCode == ConsigneeCityCode)
+                                            {
+                                                period += sP_Agent_Zones[f].DeliveryTime;
+                                                while (true)
+                                                {
+                                                    if (period == 0)
+                                                        break;
+                                                    if (now.AddDays(1).DayOfWeek == DayOfWeek.Saturday)
+                                                    {
+                                                        now = now.AddDays(1);
+                                                        continue;
+                                                    }
+                                                    else if (now.AddDays(1).DayOfWeek == DayOfWeek.Sunday)
+                                                    {
+                                                        now = now.AddDays(1);
+                                                        continue;
+                                                    }
+                                                    now = now.AddDays(1);
+                                                    period--;
+                                                }
+                                                return now.ToString("dd.MM.yyyy");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-                return "";  
+                return ""; 
             }
             catch (Exception ex)
             {
