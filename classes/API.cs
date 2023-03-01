@@ -109,5 +109,37 @@ namespace Mega.classes
                 return "";
             }
         }
+
+        public string get_info_for_delivery(string invoice)
+        {
+            try
+            {
+                megaAPI.SP_Invoice_HistoryResult[] sP_Invoice_HistoryResults = mekus.me_OneInvoiceHistory(login, invoice);
+                for (int i = 0; i < sP_Invoice_HistoryResults.Length; i++)
+                    if (sP_Invoice_HistoryResults[i].EventNum == 24)
+                        return invoice + " " + sP_Invoice_HistoryResults[i].EventDate + " " + sP_Invoice_HistoryResults[i].EventTime + " " + sP_Invoice_HistoryResults[i].Comments;
+                return null;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public string addInvoiceToManifest(string invoice, int manifest)
+        {
+            megaAPI.SP_Manifest_NaklAddResult[] sP_Manifest_NaklAddResults = null;
+            try
+            {
+                sP_Manifest_NaklAddResults = mekus.me_Manifest_NaklAdd(login, manifest, invoice);
+                if (sP_Manifest_NaklAddResults[0].ResCode != 0)
+                    return invoice + "\t" + sP_Manifest_NaklAddResults[0].ResText + "\tM" + manifest;
+                return null;
+            }
+            catch(Exception)
+            {
+                return invoice + "\t" + sP_Manifest_NaklAddResults[0].ResText + "\tM" + manifest;
+            }
+        }
     }
 }
