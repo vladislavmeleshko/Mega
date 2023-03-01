@@ -131,7 +131,7 @@ namespace Mega
                         j++;
                     }
                 }
-                richTextBox2.Text += "Накладные были добавлены в манифест!\n\n";
+                richTextBox2.Text += "M" + manifest + ": накладные были добавлены в манифест!\n\n";
             }
             catch(Exception ex)
             {
