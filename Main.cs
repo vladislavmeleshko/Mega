@@ -68,6 +68,7 @@ namespace Mega
                 string WBNumber = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 DetailHistoryInvoice form = new DetailHistoryInvoice(WBNumber, api);
                 form.Show();
+                Clipboard.SetText(WBNumber);
             }
             catch(Exception ex)
             {
@@ -85,7 +86,6 @@ namespace Mega
                 Worksheet xlSht;
 
                 Excel.Application xlApp = new Excel.Application();
-                /*xlApp.Visible = true;*/
                 xlWB = xlApp.Workbooks.Open(System.Windows.Forms.Application.StartupPath + @"\dd.xls");
                 xlSht = (Worksheet)xlApp.Worksheets.get_Item(1);
 

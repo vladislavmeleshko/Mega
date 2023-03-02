@@ -21,7 +21,6 @@ namespace Mega
             InitializeComponent();
             this.WBNumber = WBNumber;
             this.api = api;
-            textBox1.Text += string.Format("{0}", WBNumber);
         }
 
         private void DetailHistoryInvoice_Load(object sender, EventArgs e)
@@ -37,6 +36,18 @@ namespace Mega
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DetailHistoryInvoice_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                Close();
+        }
+
+        private void DetailHistoryInvoice_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                Close();
         }
     }
 }
