@@ -101,7 +101,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1437, 614);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Проверка доставток в Меги";
+            this.tabPage1.Text = "Проверка доставок в Меги";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
