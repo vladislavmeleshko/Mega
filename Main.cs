@@ -17,10 +17,14 @@ namespace Mega
     public partial class Main : Form
     {
         API api = null;
+        megaAPI.SP_ListEventsResult[] sP_ListEventsResults;
         public Main()
         {
             InitializeComponent();
             api = new API();
+            sP_ListEventsResults = api.get_history();
+            for (int i = 0; i < sP_ListEventsResults.Length; i++)
+                comboBox1.Items.Add(sP_ListEventsResults[i].EventName);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -135,7 +139,38 @@ namespace Mega
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] invoices = richTextBox5.Text.Split();
+                int j = 1;
+                string response = null;
+
+                for(int i = 0; i < invoices.Length; i++)
+                {
+                    for(int z = 0; z < sP_ListEventsResults.Length; z++)
+                    {
+                        if(comboBox1.Text == sP_ListEventsResults[z].EventName)
+                        {
+                            response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, textBox2.Text);
+                            if (response != null)
+                            {
+                                richTextBox4.Text += j + ")\t" + response + "\n\n";
+                                j++;
+                            }
+                        }
+                    }
+                }
+                richTextBox4.Text += "Истории были добавлены в накладные!\n\n";
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

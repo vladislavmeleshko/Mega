@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mega.megaAPI;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace Mega.classes
 {
     public class API
     {
-        public megaAPI.МанифестыЗаказыНакладныеSoapClient mekus = new megaAPI.МанифестыЗаказыНакладныеSoapClient();
+        public МанифестыЗаказыНакладныеSoapClient mekus = new megaAPI.МанифестыЗаказыНакладныеSoapClient();
         public string mlp;
-        public megaAPI.TicketHeader login = null;
+        public TicketHeader login = null;
 
         public API()
         {
@@ -26,7 +27,7 @@ namespace Mega.classes
             }
         }
 
-        public megaAPI.SP_ListWayBillsResult[] getAllInvoces(int type_invoice)
+        public SP_ListWayBillsResult[] getAllInvoces(int type_invoice)
         {
             try
             {   if(type_invoice == 0)
@@ -44,7 +45,7 @@ namespace Mega.classes
         {
             try
             {
-                megaAPI.SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
+                SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
                 for(int i = 0; i < sP_Invoice_HistoryResult.Length; i++)
                 {
                     if (sP_Invoice_HistoryResult[i].EventNum == 23 && sP_Invoice_HistoryResult[i].AgentCode == AgentCode)
@@ -63,7 +64,7 @@ namespace Mega.classes
         {
             try
             {
-                megaAPI.SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
+                SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
                 for (int i = 0; i < sP_Invoice_HistoryResult.Length; i++)
                 {
                     if (sP_Invoice_HistoryResult[i].EventNum == 47 && sP_Invoice_HistoryResult[i].AgentCode == AgentCode)
@@ -82,7 +83,7 @@ namespace Mega.classes
         {
             try
             {
-                megaAPI.SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
+                SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
                 if (sP_Invoice_HistoryResult.Length > 0)
                     return sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Event_Name;
                 else return "";
@@ -98,7 +99,7 @@ namespace Mega.classes
         {
             try
             {
-                megaAPI.SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
+                SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
                 if (sP_Invoice_HistoryResult.Length > 0)
                     return sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventDate + " " + sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventTime;
                 else return "";
@@ -114,13 +115,13 @@ namespace Mega.classes
         {
             try
             {
-                megaAPI.SP_Invoice_HistoryResult[] sP_Invoice_HistoryResults = mekus.me_OneInvoiceHistory(login, invoice);
+                SP_Invoice_HistoryResult[] sP_Invoice_HistoryResults = mekus.me_OneInvoiceHistory(login, invoice);
                 for (int i = 0; i < sP_Invoice_HistoryResults.Length; i++)
                     if (sP_Invoice_HistoryResults[i].EventNum == 24)
                         return invoice + " " + sP_Invoice_HistoryResults[i].EventDate + " " + sP_Invoice_HistoryResults[i].EventTime + " " + sP_Invoice_HistoryResults[i].Comments;
                 return null;
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return null;
             }
@@ -128,7 +129,7 @@ namespace Mega.classes
 
         public string addInvoiceToManifest(string invoice, int manifest)
         {
-            megaAPI.SP_Manifest_NaklAddResult[] sP_Manifest_NaklAddResults = null;
+            SP_Manifest_NaklAddResult[] sP_Manifest_NaklAddResults = null;
             try
             {
                 sP_Manifest_NaklAddResults = mekus.me_Manifest_NaklAdd(login, manifest, invoice);
@@ -139,6 +140,34 @@ namespace Mega.classes
             catch(Exception)
             {
                 return invoice + "\t" + sP_Manifest_NaklAddResults[0].ResText + "\tM" + manifest;
+            }
+        }
+
+        public SP_ListEventsResult[] get_history()
+        {
+            try
+            {
+                return mekus.me_ListEvents(login);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public string set_history_invoice(string WBNumber, int id_history, string comment)
+        {
+            SP_InvoiceHistAddResult[] sP_InvoiceHistAddResults = null;
+            try
+            {
+                sP_InvoiceHistAddResults = mekus.me_InvoiceHistoryAdd(login, WBNumber, 1367, (byte)id_history, DateTime.Now.Date, DateTime.Now.TimeOfDay.ToString("t"), comment);
+                if (sP_InvoiceHistAddResults[0].ResCode != 0)
+                    return WBNumber + "\t" + sP_InvoiceHistAddResults[0].ResText;
+                return null;
+            }
+            catch (Exception)
+            {
+                return WBNumber + "\t" + sP_InvoiceHistAddResults[0].ResText;
             }
         }
     }
