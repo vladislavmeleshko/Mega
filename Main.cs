@@ -52,6 +52,9 @@ namespace Mega
                                             "",
                                             api.getLastEvent(sP_ListWayBillsResult[i].WBNumber), api.getDateLastEvent(sP_ListWayBillsResult[i].WBNumber));
                 }
+
+                MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch(Exception ex)
             {
@@ -84,6 +87,8 @@ namespace Mega
                                                 "",
                                                 api.getLastEvent(sP_ListWayBillsResult[i].WBNumber), api.getDateLastEvent(sP_ListWayBillsResult[i].WBNumber));
                 }
+
+                MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
              }
             catch (Exception ex)
