@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -170,6 +171,55 @@ namespace Mega.classes
             catch (Exception)
             {
                 return WBNumber + "\t" + sP_InvoiceHistAddResults[0].ResText;
+            }
+        }
+
+        public string get_date_delivery(DateTime date, int ConsigneeAgentConde, int ConsigneeCityCode)
+        {
+            SP_Agent_ZoneResult[] sP_Agent_ZoneResults = null;
+            try
+            {
+                if(date != DateTime.MinValue)
+                {
+                    sP_Agent_ZoneResults = mekus.me_AgentZone(login, (short)ConsigneeAgentConde, DateTime.Today);
+                    for (int i = 0; i < sP_Agent_ZoneResults.Length; i++)
+                    {
+                        if (sP_Agent_ZoneResults[i].CityCode == ConsigneeCityCode)
+                        {
+                            if (date.DayOfWeek == DayOfWeek.Saturday || date.AddDays((double)sP_Agent_ZoneResults[i].DeliveryTime - 1).DayOfWeek == DayOfWeek.Saturday)
+                            {
+                                date = date.AddDays(2 + (double)sP_Agent_ZoneResults[i].DeliveryTime - 1);
+                                return date.ToString("dd.MM.yyyy");
+                            }
+                            else if (date.DayOfWeek == DayOfWeek.Sunday || date.AddDays((double)sP_Agent_ZoneResults[i].DeliveryTime - 1).DayOfWeek == DayOfWeek.Sunday)
+                            {
+                                date = date.AddDays(1 + (double)sP_Agent_ZoneResults[i].DeliveryTime - 1);
+                                return date.ToString("dd.MM.yyyy");
+                            }
+                            else
+                            {
+                                date = date.AddDays((double)sP_Agent_ZoneResults[i].DeliveryTime - 1);
+                                return date.ToString("dd.MM.yyyy");
+                            }
+                        }
+                    }
+                    if (date.DayOfWeek == DayOfWeek.Saturday)
+                    {
+                        date = date.AddDays(2);
+                        return date.ToString("dd.MM.yyyy");
+                    }
+                    else if (date.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        date = date.AddDays(1);
+                        return date.ToString("dd.MM.yyyy");
+                    }
+                    return date.ToString("dd.MM.yyyy");
+                }
+                return "";
+            }
+            catch (Exception)
+            {
+                return "";
             }
         }
     }
