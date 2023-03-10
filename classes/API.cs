@@ -161,9 +161,7 @@ namespace Mega.classes
             SP_InvoiceHistAddResult[] sP_InvoiceHistAddResults = null;
             try
             {
-                if(id_history == 32)
-                    sP_InvoiceHistAddResults = mekus.me_InvoiceHistoryAdd(login, WBNumber, 1367, (byte)id_history, DateTime.Now.Date, time, comment);
-                else sP_InvoiceHistAddResults = mekus.me_InvoiceHistoryAdd(login, WBNumber, 1367, (byte)id_history, DateTime.Now.Date, time, comment);
+                sP_InvoiceHistAddResults = mekus.me_InvoiceHistoryAdd(login, WBNumber, 1367, (byte)id_history, DateTime.Now.Date, time, comment);
                 if (sP_InvoiceHistAddResults[0].ResCode != 0)
                     return WBNumber + "\t" + sP_InvoiceHistAddResults[0].ResText;
                 return null;
