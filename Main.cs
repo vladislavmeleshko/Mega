@@ -189,7 +189,7 @@ namespace Mega
                     {
                         if(comboBox1.Text == sP_ListEventsResults[z].EventName)
                         {
-                            response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, textBox2.Text);
+                            response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, textBox2.Text, textBox3.Text);
                             if (response != null)
                             {
                                 richTextBox4.Text += j + ")\t" + response + "\n\n";
