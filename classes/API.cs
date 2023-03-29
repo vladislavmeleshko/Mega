@@ -275,7 +275,7 @@ namespace Mega.classes
                         invoice.PaymentType = "Б/нал";
                     report.Manifest[0].Invoice.Add(invoice);
                 }
-            return report;
+                return report;
             }
             catch(Exception ex)
             {
