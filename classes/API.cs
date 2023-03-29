@@ -20,7 +20,7 @@ namespace Mega.classes
         {
             try
             {
-                login = mekus.me_Login("webminsk", "XvR2qTM9", out mlp);
+                login = mekus.me_Login("webminsk", "XvR2qTM970a04d43", out mlp);
             }
             catch(Exception ex)
             {
@@ -222,5 +222,79 @@ namespace Mega.classes
                 return "";
             }
         }
+
+        public Report get_invoices_in_manifest(string manifest)
+        {
+            WBInManifest[] wBInManifests = null;
+            Report report = new Report();
+            try
+            {
+                wBInManifests = mekus.me_allInvocesManifest_new(login, Convert.ToInt32(manifest.Replace("М", "")));
+                report.Manifest = new List<ReportManifest>
+                {
+                    new ReportManifest()
+                };
+                report.Manifest[0].Invoice = new List<ReportManifestInvoice>();
+
+                for (int i = 0; i < wBInManifests.Length; i++)
+                {
+                    ReportManifestInvoice invoice = new ReportManifestInvoice();
+                    invoice.WBNumber = Convert.ToUInt32(wBInManifests[i].WBNumber);
+                    invoice.Date = Convert.ToString(wBInManifests[i].WBOpenDate);
+                    invoice.ShipperCountry = wBInManifests[i].ShipperCountry;
+                    invoice.ShipperCity = wBInManifests[i].ShipperCity_Name;
+                    invoice.ShipperAgent = wBInManifests[i].ShipperAgent;
+                    invoice.ShipperCompany = wBInManifests[i].ShipperCompany;
+                    invoice.ShipperFIO = wBInManifests[i].ShipperLastName;
+                    invoice.ShipperPhone = wBInManifests[i].ShipperPhone;
+                    invoice.ShipperAddress = wBInManifests[i].ShipperAdres;
+                    invoice.ConsigneeCountry = wBInManifests[i].ConsigneeCountry;
+                    invoice.ConsigneeCity = wBInManifests[i].ConsigneeCity_Name;
+                    invoice.ConsigneeAgent = wBInManifests[i].ConsigneeAgent;
+                    invoice.ConsigneeCompany = wBInManifests[i].ConsigneeCompany;
+                    invoice.ConsigneeFIO = wBInManifests[i].ConsigneeLastName;
+                    invoice.ConsigneePhone = wBInManifests[i].ConsigneePhone;
+                    invoice.ConsigneeAddress = wBInManifests[i].ConsigneeAdres;
+                    invoice.WBWeight = Convert.ToDecimal(wBInManifests[i].WBWeight);
+                    invoice.Places = wBInManifests[i].Places.Length;
+                    invoice.WhoWillPay = Convert.ToString(wBInManifests[i].WhoWillPay);
+                    invoice.Status = wBInManifests[i].NaklStatus;
+                    invoice.WBOldNumber = wBInManifests[i].WBOldNumber;
+                    invoice.FedexNumber = wBInManifests[i].FedexNum;
+                    invoice.VolumeWeight = Convert.ToDecimal(wBInManifests[i].WBVolumeWeight);
+                    invoice.WBDescription = wBInManifests[i].WBDescription;
+                    if (wBInManifests[i].WhoWillPay == 1)
+                        invoice.WhoWillPay = "Отправитель";
+                    else if (wBInManifests[i].WhoWillPay == 2)
+                        invoice.WhoWillPay = "Получатель";
+                    else if (wBInManifests[i].WhoWillPay == 3)
+                        invoice.WhoWillPay = "3-я сторона";
+                    if (wBInManifests[i].PaymentType == 1)
+                        invoice.PaymentType = "Нал";
+                    else if (wBInManifests[i].PaymentType == 2)
+                        invoice.PaymentType = "Б/нал";
+                    report.Manifest[0].Invoice.Add(invoice);
+                }
+            return report;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public SP_ListManifestsResult[] get_manifest_for_date(DateTime date)
+        {
+            try
+            {
+                return mekus.me_ListManifests(login, date);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        } 
     }
 }

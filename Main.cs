@@ -11,6 +11,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Xml.Serialization;
+using System.IO;
+using Mega.megaAPI;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Mega
 {
@@ -203,6 +207,49 @@ namespace Mega
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SP_ListManifestsResult[] sP_ListManifestsResults = api.get_manifest_for_date(dateTimePicker1.Value.Date);
+                for(int i = 0; i < sP_ListManifestsResults.Length; i++)
+                {
+                    Report result = api.get_invoices_in_manifest(sP_ListManifestsResults[i].ManifestNum);
+                    if (result != null)
+                    {
+                        XmlSerializer xmlSerializer = new XmlSerializer(typeof(Report));
+                        using (StreamWriter writer = new StreamWriter("Выгрузка МЭ.txt", true, Encoding.UTF8))
+                        {
+                            xmlSerializer.Serialize(writer, result);
+                        }
+                    }
+                }
+                MessageBox.Show("Накладные записаны в файл!", "Запись накладных", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                SP_ListManifestsResult[] sP_ListManifestsResults = api.get_manifest_for_date(dateTimePicker1.Value.Date);
+                for(int i = 0; i < sP_ListManifestsResults.Length; i++)
+                {
+                    richTextBox1.Text = sP_ListManifestsResults[i].ManifestNum + "\n";
+                    richTextBox1.Text = sP_ListManifestsResults[i].ShipperAgent_Name + "\n\n";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
