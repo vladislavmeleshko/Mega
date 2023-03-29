@@ -221,10 +221,20 @@ namespace Mega
                     if (result != null)
                     {
                         XmlSerializer xmlSerializer = new XmlSerializer(typeof(Report));
-                        using (StreamWriter writer = new StreamWriter("Выгрузка МЭ.txt", true, Encoding.UTF8))
+                        if(checkBox1.Checked == false)
                         {
-                            xmlSerializer.Serialize(writer, result);
+                            using (StreamWriter writer = new StreamWriter("Выгрузка МЭ.txt", true, Encoding.UTF8))
+                            {
+                                xmlSerializer.Serialize(writer, result);
+                            }
                         }
+                        else
+                        {
+                            using (StreamWriter writer = new StreamWriter("Выгрузка МЭ.txt", false, Encoding.UTF8))
+                            {
+                                xmlSerializer.Serialize(writer, result);
+                            }
+                        } 
                     }
                 }
                 MessageBox.Show("Накладные записаны в файл!", "Запись накладных", MessageBoxButtons.OK, MessageBoxIcon.Information);
