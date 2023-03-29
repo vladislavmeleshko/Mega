@@ -243,24 +243,6 @@ namespace Mega
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                SP_ListManifestsResult[] sP_ListManifestsResults = api.get_manifest_for_date(dateTimePicker1.Value.Date);
-                for(int i = 0; i < sP_ListManifestsResults.Length; i++)
-                {
-                    richTextBox1.Text = sP_ListManifestsResults[i].ManifestNum + "\n";
-                    richTextBox1.Text = sP_ListManifestsResults[i].ShipperAgent_Name + "\n\n";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }
