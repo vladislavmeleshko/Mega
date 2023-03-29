@@ -70,9 +70,6 @@
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button6 = new System.Windows.Forms.Button();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -90,7 +87,6 @@
             this.groupBox7.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.groupBox11.SuspendLayout();
-            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -447,10 +443,8 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.richTextBox6);
             this.tabPage5.Controls.Add(this.groupBox11);
             this.tabPage5.Controls.Add(this.button6);
-            this.tabPage5.Controls.Add(this.groupBox10);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1437, 614);
@@ -461,7 +455,7 @@
             // groupBox11
             // 
             this.groupBox11.Controls.Add(this.dateTimePicker1);
-            this.groupBox11.Location = new System.Drawing.Point(10, 89);
+            this.groupBox11.Location = new System.Drawing.Point(10, 4);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(193, 50);
             this.groupBox11.TabIndex = 3;
@@ -480,36 +474,11 @@
             // 
             this.button6.Location = new System.Drawing.Point(10, 60);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(187, 23);
+            this.button6.Size = new System.Drawing.Size(193, 23);
             this.button6.TabIndex = 1;
             this.button6.Text = "Выгрузить накладные в файл";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.textBox4);
-            this.groupBox10.Location = new System.Drawing.Point(3, 3);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(200, 50);
-            this.groupBox10.TabIndex = 0;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Введите номер манифеста";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(7, 20);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(187, 20);
-            this.textBox4.TabIndex = 0;
-            // 
-            // richTextBox6
-            // 
-            this.richTextBox6.Location = new System.Drawing.Point(10, 145);
-            this.richTextBox6.Name = "richTextBox6";
-            this.richTextBox6.Size = new System.Drawing.Size(193, 466);
-            this.richTextBox6.TabIndex = 4;
-            this.richTextBox6.Text = "";
             // 
             // Main
             // 
@@ -539,8 +508,6 @@
             this.groupBox7.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.groupBox11.ResumeLayout(false);
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -587,11 +554,8 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.GroupBox groupBox11;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.RichTextBox richTextBox6;
     }
 }
 
