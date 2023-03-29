@@ -215,13 +215,13 @@ namespace Mega
             try
             {
                 SP_ListManifestsResult[] sP_ListManifestsResults = api.get_manifest_for_date(dateTimePicker1.Value.Date);
-                for(int i = 0; i < sP_ListManifestsResults.Length; i++)
+                for (int i = 0; i < sP_ListManifestsResults.Length; i++)
                 {
                     Report result = api.get_invoices_in_manifest(sP_ListManifestsResults[i].ManifestNum);
                     if (result != null)
                     {
                         XmlSerializer xmlSerializer = new XmlSerializer(typeof(Report));
-                        if(checkBox1.Checked == false)
+                        if (checkBox1.Checked == false)
                         {
                             using (StreamWriter writer = new StreamWriter("Выгрузка МЭ.txt", true, Encoding.UTF8))
                             {
@@ -234,7 +234,7 @@ namespace Mega
                             {
                                 xmlSerializer.Serialize(writer, result);
                             }
-                        } 
+                        }
                     }
                 }
                 MessageBox.Show("Накладные записаны в файл!", "Запись накладных", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -243,6 +243,14 @@ namespace Mega
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox4.Text == "VladMekus")
+                button6.Enabled = true;
+            else
+                button6.Enabled = false;
         }
     }
 }
