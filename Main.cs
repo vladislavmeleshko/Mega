@@ -253,5 +253,27 @@ namespace Mega
             else
                 button6.Enabled = false;*/
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] number = richTextBox6.Text.Split();
+                Report result = api.get_invoices_out_manifest(number, 0);
+                if (result != null)
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(Report));
+                    using (StreamWriter writer = new StreamWriter("Выгрузка МЭ.txt", false, Encoding.UTF8))
+                    {
+                        xmlSerializer.Serialize(writer, result);
+                    }
+                }
+                MessageBox.Show("Накладные записаны в файл!", "Запись накладных", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

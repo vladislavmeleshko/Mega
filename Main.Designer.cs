@@ -67,12 +67,13 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button6 = new System.Windows.Forms.Button();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -89,8 +90,8 @@
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.groupBox11.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -447,6 +448,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.button7);
             this.tabPage5.Controls.Add(this.groupBox10);
             this.tabPage5.Controls.Add(this.checkBox1);
             this.tabPage5.Controls.Add(this.groupBox11);
@@ -457,6 +459,16 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Выгрузка накладных из Меги";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.richTextBox6);
+            this.groupBox10.Location = new System.Drawing.Point(10, 113);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(193, 377);
+            this.groupBox10.TabIndex = 5;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Список накладных";
             // 
             // checkBox1
             // 
@@ -496,24 +508,23 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // groupBox10
+            // richTextBox6
             // 
-            this.groupBox10.Controls.Add(this.textBox4);
-            this.groupBox10.Location = new System.Drawing.Point(209, 4);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(193, 50);
-            this.groupBox10.TabIndex = 5;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Значение";
+            this.richTextBox6.Location = new System.Drawing.Point(7, 20);
+            this.richTextBox6.Name = "richTextBox6";
+            this.richTextBox6.Size = new System.Drawing.Size(180, 351);
+            this.richTextBox6.TabIndex = 0;
+            this.richTextBox6.Text = "";
             // 
-            // textBox4
+            // button7
             // 
-            this.textBox4.Location = new System.Drawing.Point(7, 20);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.PasswordChar = '*';
-            this.textBox4.Size = new System.Drawing.Size(180, 20);
-            this.textBox4.TabIndex = 0;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.button7.Location = new System.Drawing.Point(10, 496);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(193, 23);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Накладные ВНЕ манифестов";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // Main
             // 
@@ -543,9 +554,8 @@
             this.groupBox7.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -596,7 +606,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.RichTextBox richTextBox6;
     }
 }
 

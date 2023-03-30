@@ -273,7 +273,7 @@ namespace Mega.classes
                         invoice.PaymentType = "Нал";
                     else if (wBInManifests[i].PaymentType == 2)
                         invoice.PaymentType = "Б/нал";
-                    report.Manifest[0].Invoice.Add(invoice);
+                    report.Manifest[i].Invoice.Add(invoice);
                 }
                 return report;
             }
@@ -281,6 +281,68 @@ namespace Mega.classes
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
+            }
+        }
+
+        public Report get_invoices_out_manifest(string[] number, int i)
+        {
+            SP_Invoice_GenerResult[] sP_Invoice_GenerResults = null;
+            Report report = new Report();
+            try
+            {
+                report.Manifest = new List<ReportManifest>
+                {
+                    new ReportManifest()
+                };
+                report.Manifest[0].Invoice = new List<ReportManifestInvoice>();
+                for (i = i; i < number.Length; i++)
+                {
+                    sP_Invoice_GenerResults = mekus.me_oneInvoice(login, number[i]);
+                    if (sP_Invoice_GenerResults[0].WBNumber != null)
+                    {
+                        ReportManifestInvoice invoice = new ReportManifestInvoice();
+                        invoice.WBNumber = Convert.ToUInt32(sP_Invoice_GenerResults[0].WBNumber);
+                        invoice.Date = Convert.ToString(sP_Invoice_GenerResults[0].WBOpenDate);
+                        invoice.ShipperCity = sP_Invoice_GenerResults[0].ShipperCity_Name;
+                        invoice.ShipperAgent = sP_Invoice_GenerResults[0].ShipperAgent_Name;
+                        invoice.ShipperCompany = sP_Invoice_GenerResults[0].ShipperCompany;
+                        invoice.ShipperFIO = sP_Invoice_GenerResults[0].ShipperLastName;
+                        invoice.ShipperPhone = sP_Invoice_GenerResults[0].ShipperPhone;
+                        invoice.ShipperAddress = sP_Invoice_GenerResults[0].ShipperAdres;
+                        invoice.ConsigneeCity = sP_Invoice_GenerResults[0].ConsigneeCity_Name;
+                        invoice.ConsigneeAgent = sP_Invoice_GenerResults[0].ConsigneeAgent_Name;
+                        invoice.ConsigneeCompany = sP_Invoice_GenerResults[0].ConsigneeCompany;
+                        invoice.ConsigneeFIO = sP_Invoice_GenerResults[0].ConsigneeLastName;
+                        invoice.ConsigneePhone = sP_Invoice_GenerResults[0].ConsigneePhone;
+                        invoice.ConsigneeAddress = sP_Invoice_GenerResults[0].ConsigneeAdres;
+                        if(sP_Invoice_GenerResults[0].WBWeight != null)
+                            invoice.WBWeight = Convert.ToDecimal(sP_Invoice_GenerResults[0].WBWeight.Replace(".", ","));
+                        invoice.Places = Convert.ToInt32(sP_Invoice_GenerResults[0].WBPackage);
+                        invoice.WhoWillPay = Convert.ToString(sP_Invoice_GenerResults[0].WhoWillPay);
+                        invoice.Status = sP_Invoice_GenerResults[0].NaklStatus;
+                        invoice.WBOldNumber = sP_Invoice_GenerResults[0].WBOldNumber;
+                        invoice.FedexNumber = sP_Invoice_GenerResults[0].FedexNum;
+                        invoice.VolumeWeight = Convert.ToDecimal(sP_Invoice_GenerResults[0].WBVolumeWeight);
+                        invoice.WBDescription = sP_Invoice_GenerResults[0].WBDescription;
+                        if (sP_Invoice_GenerResults[0].WhoWillPay == 1)
+                            invoice.WhoWillPay = "Отправитель";
+                        else if (sP_Invoice_GenerResults[0].WhoWillPay == 2)
+                            invoice.WhoWillPay = "Получатель";
+                        else if (sP_Invoice_GenerResults[0].WhoWillPay == 3)
+                            invoice.WhoWillPay = "3-я сторона";
+                        if (sP_Invoice_GenerResults[0].PaymentType == 1)
+                            invoice.PaymentType = "Нал";
+                        else if (sP_Invoice_GenerResults[0].PaymentType == 2)
+                            invoice.PaymentType = "Б/нал";
+                        report.Manifest[0].Invoice.Add(invoice);
+                    }
+                }
+                return report;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return get_invoices_out_manifest(number, i + 1);
             }
         }
 
