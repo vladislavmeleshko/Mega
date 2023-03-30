@@ -29,6 +29,7 @@ namespace Mega
             sP_ListEventsResults = api.get_history();
             for (int i = 0; i < sP_ListEventsResults.Length; i++)
                 comboBox1.Items.Add(sP_ListEventsResults[i].EventName);
+            /*button6.Enabled = true;*/
         }
 
         private void button2_Click(object sender, EventArgs e)
