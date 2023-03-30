@@ -287,6 +287,7 @@ namespace Mega.classes
         {
             SP_Invoice_GenerResult[] sP_Invoice_GenerResults = null;
             Report report = new Report();
+            int j = i;
             try
             {
                 report.Manifest = new List<ReportManifest>
@@ -294,9 +295,9 @@ namespace Mega.classes
                     new ReportManifest()
                 };
                 report.Manifest[0].Invoice = new List<ReportManifestInvoice>();
-                for (i = i; i < number.Length; i++)
+                for (j = i; j < number.Length; j++)
                 {
-                    sP_Invoice_GenerResults = mekus.me_oneInvoice(login, number[i]);
+                    sP_Invoice_GenerResults = mekus.me_oneInvoice(login, number[j]);
                     if (sP_Invoice_GenerResults[0].WBNumber != null)
                     {
                         ReportManifestInvoice invoice = new ReportManifestInvoice();
@@ -340,7 +341,7 @@ namespace Mega.classes
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return get_invoices_out_manifest(number, i + 1);
+                return get_invoices_out_manifest(number, j + 1);
             }
         }
 
