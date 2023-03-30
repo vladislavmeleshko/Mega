@@ -222,14 +222,14 @@ namespace Mega
                     if (result != null)
                     {
                         XmlSerializer xmlSerializer = new XmlSerializer(typeof(Report));
-                        if (checkBox1.Checked == false)
+                        if (checkBox1.Checked == false || i > 0)
                         {
                             using (StreamWriter writer = new StreamWriter("Выгрузка МЭ.txt", true, Encoding.UTF8))
                             {
                                 xmlSerializer.Serialize(writer, result);
                             }
                         }
-                        else
+                        else if(checkBox1.Checked == true && i == 0)
                         {
                             using (StreamWriter writer = new StreamWriter("Выгрузка МЭ.txt", false, Encoding.UTF8))
                             {
