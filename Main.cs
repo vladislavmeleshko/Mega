@@ -29,7 +29,7 @@ namespace Mega
             sP_ListEventsResults = api.get_history();
             for (int i = 0; i < sP_ListEventsResults.Length; i++)
                 comboBox1.Items.Add(sP_ListEventsResults[i].EventName);
-            /*button6.Enabled = true;*/
+            button6.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -248,10 +248,10 @@ namespace Mega
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            if (textBox4.Text == "VladMekus")
+            /*if (textBox4.Text == "VladMekus")
                 button6.Enabled = true;
             else
-                button6.Enabled = false;
+                button6.Enabled = false;*/
         }
     }
 }
