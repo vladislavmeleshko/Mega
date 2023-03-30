@@ -257,7 +257,6 @@ namespace Mega.classes
                     invoice.ConsigneeAddress = wBInManifests[i].ConsigneeAdres;
                     invoice.WBWeight = Convert.ToDecimal(wBInManifests[i].WBWeight);
                     invoice.Places = wBInManifests[i].Places.Length;
-                    invoice.WhoWillPay = Convert.ToString(wBInManifests[i].WhoWillPay);
                     invoice.Status = wBInManifests[i].NaklStatus;
                     invoice.WBOldNumber = wBInManifests[i].WBOldNumber;
                     invoice.FedexNumber = wBInManifests[i].FedexNum;
@@ -318,7 +317,6 @@ namespace Mega.classes
                         if(sP_Invoice_GenerResults[0].WBWeight != null)
                             invoice.WBWeight = Convert.ToDecimal(sP_Invoice_GenerResults[0].WBWeight.Replace(".", ","));
                         invoice.Places = Convert.ToInt32(sP_Invoice_GenerResults[0].WBPackage);
-                        invoice.WhoWillPay = Convert.ToString(sP_Invoice_GenerResults[0].WhoWillPay);
                         invoice.Status = sP_Invoice_GenerResults[0].NaklStatus;
                         invoice.WBOldNumber = sP_Invoice_GenerResults[0].WBOldNumber;
                         invoice.FedexNumber = sP_Invoice_GenerResults[0].FedexNum;
