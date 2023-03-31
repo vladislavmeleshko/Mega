@@ -268,11 +268,11 @@ namespace Mega.classes
                         invoice.WhoWillPay = "Получатель";
                     else if (wBInManifests[i].WhoWillPay == 3)
                         invoice.WhoWillPay = "3-я сторона";
-                    if (wBInManifests[i].PaymentType == 1)
+                    if (wBInManifests[i].PaymentType == 1 && wBInManifests[i].WhoWillPay != 3)
                         invoice.PaymentType = "Нал";
-                    else if (wBInManifests[i].PaymentType == 2)
+                    else if (wBInManifests[i].PaymentType == 2 && wBInManifests[i].WhoWillPay != 3)
                         invoice.PaymentType = "Б/нал";
-                    report.Manifest[i].Invoice.Add(invoice);
+                    report.Manifest[0].Invoice.Add(invoice);
                 }
                 return report;
             }
