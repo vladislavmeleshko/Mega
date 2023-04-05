@@ -262,6 +262,7 @@ namespace Mega.classes
                     invoice.FedexNumber = wBInManifests[i].FedexNum;
                     invoice.VolumeWeight = Convert.ToDecimal(wBInManifests[i].WBVolumeWeight);
                     invoice.WBDescription = wBInManifests[i].WBDescription;
+                    invoice.FreightRUR = Convert.ToString(wBInManifests[i].Freight_RUR).Replace(".", ",");
                     if (wBInManifests[i].WhoWillPay == 1)
                         invoice.WhoWillPay = "Отправитель";
                     else if (wBInManifests[i].WhoWillPay == 2)
@@ -323,6 +324,7 @@ namespace Mega.classes
                         invoice.FedexNumber = sP_Invoice_GenerResults[0].FedexNum;
                         invoice.VolumeWeight = Convert.ToDecimal(sP_Invoice_GenerResults[0].WBVolumeWeight);
                         invoice.WBDescription = sP_Invoice_GenerResults[0].WBDescription;
+                        invoice.FreightRUR = Convert.ToString(sP_Invoice_GenerResults[0].Freight_RUR).Replace(".", ",");
                         if (sP_Invoice_GenerResults[0].WhoWillPay == 1)
                             invoice.WhoWillPay = "Отправитель";
                         else if (sP_Invoice_GenerResults[0].WhoWillPay == 2)
