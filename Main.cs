@@ -37,25 +37,22 @@ namespace Mega
             try
             {
                 dataGridView1.Rows.Clear();
-                megaAPI.SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(0);
+                SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(0);
 
                 for (int i = 0; i < sP_ListWayBillsResult.Length; i++)
                 {
-                    DateTime date = new DateTime();
-                    if (api.getDateOfReceipt(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode) != "")
-                        date = Convert.ToDateTime(api.getDateOfReceipt(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode));
-                    if (date.Date != DateTime.MinValue)
+                    API newAPI = new API();
+
+                    newAPI.get_test(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode);
+
+                    if (newAPI.dateofreceipt != null)
                         dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
-                                            sP_ListWayBillsResult[i].ConsigneeCity_Name, api.getDateOfShipment(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode),
-                                            date.ToString("dd.MM.yyyy HH:mm"),
-                                            api.get_date_delivery(date, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode),
-                                            api.getLastEvent(sP_ListWayBillsResult[i].WBNumber), api.getDateLastEvent(sP_ListWayBillsResult[i].WBNumber));
+                                            sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
+                                            newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.datetimehistory);
                     else
                         dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
-                                            sP_ListWayBillsResult[i].ConsigneeCity_Name, api.getDateOfShipment(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode),
-                                            "",
-                                            "",
-                                            api.getLastEvent(sP_ListWayBillsResult[i].WBNumber), api.getDateLastEvent(sP_ListWayBillsResult[i].WBNumber));
+                                            sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
+                                            "", "", newAPI.namehistory, newAPI.datetimehistory);
                 }
 
                 MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -72,25 +69,22 @@ namespace Mega
             try
             {
                 dataGridView1.Rows.Clear();
-                megaAPI.SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(1);
+                SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(1);
 
                 for (int i = 0; i < sP_ListWayBillsResult.Length; i++)
                 {
-                    DateTime date = new DateTime();
-                    if (api.getDateOfReceipt(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode) != "")
-                        date = Convert.ToDateTime(api.getDateOfReceipt(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode));
-                    if(date.Date != DateTime.MinValue)
+                    API newAPI = new API();
+
+                    newAPI.get_test(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode);
+
+                    if (newAPI.dateofreceipt != null)
                         dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
-                                                sP_ListWayBillsResult[i].ConsigneeCity_Name, api.getDateOfShipment(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode),
-                                                date.ToString("dd.MM.yyyy HH:mm"),
-                                                api.get_date_delivery(date, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode),
-                                                api.getLastEvent(sP_ListWayBillsResult[i].WBNumber), api.getDateLastEvent(sP_ListWayBillsResult[i].WBNumber));
+                                            sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
+                                            newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.datetimehistory);
                     else
                         dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
-                                                sP_ListWayBillsResult[i].ConsigneeCity_Name, api.getDateOfShipment(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode),
-                                                "",
-                                                "",
-                                                api.getLastEvent(sP_ListWayBillsResult[i].WBNumber), api.getDateLastEvent(sP_ListWayBillsResult[i].WBNumber));
+                                            sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
+                                            "", "", newAPI.namehistory, newAPI.datetimehistory);
                 }
 
                 MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -229,7 +223,7 @@ namespace Mega
                                 xmlSerializer.Serialize(writer, result);
                             }
                         }
-                        else if(checkBox1.Checked == true && i == 0)
+                        else if (checkBox1.Checked == true && i == 0)
                         {
                             using (StreamWriter writer = new StreamWriter("Выгрузка МЭ.txt", false, Encoding.UTF8))
                             {
@@ -240,18 +234,10 @@ namespace Mega
                 }
                 MessageBox.Show("Накладные записаны в файл!", "Запись накладных", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-            /*if (textBox4.Text == "VladMekus")
-                button6.Enabled = true;
-            else
-                button6.Enabled = false;*/
         }
 
         private void button7_Click(object sender, EventArgs e)

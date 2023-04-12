@@ -16,6 +16,12 @@ namespace Mega.classes
         public string mlp;
         public TicketHeader login = null;
 
+        public string dateofshipment { get; set; }
+        public string dateofreceipt { get; set; }
+        public string dateofdaydeveliery { get; set; }
+        public string namehistory { get; set; }
+        public string datetimehistory { get; set; }
+
         public API()
         {
             try
@@ -42,6 +48,24 @@ namespace Mega.classes
             }
         }
 
+        public void get_test(string WBNumber, int AgentCode, int AgentCode2, int CityCode)
+        {
+            SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
+            for (int i = 0; i < sP_Invoice_HistoryResult.Length; i++)
+            {
+                if (sP_Invoice_HistoryResult[i].EventNum == 23 && sP_Invoice_HistoryResult[i].AgentCode == AgentCode)
+                    dateofshipment = sP_Invoice_HistoryResult[i].EventDate + " " + sP_Invoice_HistoryResult[i].EventTime;
+                else if (sP_Invoice_HistoryResult[i].EventNum == 47 && sP_Invoice_HistoryResult[i].AgentCode == AgentCode2)
+                {
+                    dateofreceipt = sP_Invoice_HistoryResult[i].EventDate + " " + sP_Invoice_HistoryResult[i].EventTime;
+                    dateofdaydeveliery = get_date_delivery(Convert.ToDateTime(dateofreceipt), AgentCode2, CityCode);
+                }
+                namehistory = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Event_Name;
+                datetimehistory = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventDate + " "
+                                    + sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventTime;
+            }
+        }
+
         public string getDateOfShipment(string WBNumber, int AgentCode)
         {
             try
@@ -52,12 +76,12 @@ namespace Mega.classes
                     if (sP_Invoice_HistoryResult[i].EventNum == 23 && sP_Invoice_HistoryResult[i].AgentCode == AgentCode)
                         return sP_Invoice_HistoryResult[i].EventDate + " " + sP_Invoice_HistoryResult[i].EventTime;
                 }
-                return "";
+                return DateTime.MinValue.ToString();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "";
+                return DateTime.MinValue.ToString();
             }
         }
 
@@ -71,12 +95,12 @@ namespace Mega.classes
                     if (sP_Invoice_HistoryResult[i].EventNum == 47 && sP_Invoice_HistoryResult[i].AgentCode == AgentCode)
                         return sP_Invoice_HistoryResult[i].EventDate + " " + sP_Invoice_HistoryResult[i].EventTime;
                 }
-                return "";
+                return DateTime.MinValue.ToString();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return "";
+                return DateTime.MinValue.ToString();
             }
         }
 

@@ -67,13 +67,13 @@
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button6 = new System.Windows.Forms.Button();
-            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -460,6 +460,16 @@
             this.tabPage5.Text = "Выгрузка накладных из Меги";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(10, 496);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(193, 23);
+            this.button7.TabIndex = 6;
+            this.button7.Text = "Накладные ВНЕ манифестов";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.richTextBox6);
@@ -469,6 +479,14 @@
             this.groupBox10.TabIndex = 5;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Список накладных";
+            // 
+            // richTextBox6
+            // 
+            this.richTextBox6.Location = new System.Drawing.Point(7, 20);
+            this.richTextBox6.Name = "richTextBox6";
+            this.richTextBox6.Size = new System.Drawing.Size(180, 351);
+            this.richTextBox6.TabIndex = 0;
+            this.richTextBox6.Text = "";
             // 
             // checkBox1
             // 
@@ -507,24 +525,6 @@
             this.button6.Text = "Выгрузить накладные в файл";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // richTextBox6
-            // 
-            this.richTextBox6.Location = new System.Drawing.Point(7, 20);
-            this.richTextBox6.Name = "richTextBox6";
-            this.richTextBox6.Size = new System.Drawing.Size(180, 351);
-            this.richTextBox6.TabIndex = 0;
-            this.richTextBox6.Text = "";
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(10, 496);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(193, 23);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Накладные ВНЕ манифестов";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // Main
             // 
