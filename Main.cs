@@ -39,6 +39,9 @@ namespace Mega
             {
                 try
                 {
+                    this.Invoke(new System.Action(() =>
+                        dataGridView1.Rows.Clear()
+                    ));
                     dataGridView1.Rows.Clear();
                     SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(0);
 
@@ -92,7 +95,9 @@ namespace Mega
             {
                 try
                 {
-                    dataGridView1.Rows.Clear();
+                    this.Invoke(new System.Action(() =>
+                        dataGridView1.Rows.Clear()
+                    ));
                     SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(1);
 
                     for (int i = 0; i < sP_ListWayBillsResult.Length; i++)
@@ -105,14 +110,14 @@ namespace Mega
                             if (newAPI.dateofreceipt != null)
                             {
                                 this.Invoke(new System.Action(() =>
-                                dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
+                                    dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                                         sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
                                                         newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory)
                                 ));
                             }
                             else
                                 this.Invoke(new System.Action(() =>
-                                dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
+                                    dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                                 sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
                                                 "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory)
                                 ));
