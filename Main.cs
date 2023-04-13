@@ -48,11 +48,11 @@ namespace Mega
                     if (newAPI.dateofreceipt != null)
                         dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                             sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
-                                            newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.datetimehistory);
+                                            newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory);
                     else
                         dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                             sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
-                                            "", "", newAPI.namehistory, newAPI.datetimehistory);
+                                            "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory);
                 }
 
                 MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -80,11 +80,11 @@ namespace Mega
                     if (newAPI.dateofreceipt != null)
                         dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                             sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
-                                            newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.datetimehistory);
+                                            newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory);
                     else
                         dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                             sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
-                                            "", "", newAPI.namehistory, newAPI.datetimehistory);
+                                            "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory);
                 }
 
                 MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);

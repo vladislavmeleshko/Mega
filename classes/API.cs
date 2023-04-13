@@ -21,6 +21,7 @@ namespace Mega.classes
         public string dateofdaydeveliery { get; set; }
         public string namehistory { get; set; }
         public string datetimehistory { get; set; }
+        public string comment { get; set; }
 
         public API()
         {
@@ -63,6 +64,7 @@ namespace Mega.classes
                 namehistory = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Event_Name;
                 datetimehistory = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventDate + " "
                                     + sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventTime;
+                comment = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Comments;
             }
         }
 
