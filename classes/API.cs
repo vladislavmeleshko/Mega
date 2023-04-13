@@ -205,7 +205,7 @@ namespace Mega.classes
             SP_Agent_ZoneResult[] sP_Agent_ZoneResults = null;
             try
             {
-                if(date != DateTime.MinValue)
+                if (date != DateTime.MinValue)
                 {
                     sP_Agent_ZoneResults = mekus.me_AgentZone(login, (short)ConsigneeAgentConde, DateTime.Today);
                     for (int i = 0; i < sP_Agent_ZoneResults.Length; i++)
