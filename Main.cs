@@ -15,6 +15,7 @@ using System.Xml.Serialization;
 using System.IO;
 using Mega.megaAPI;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Threading;
 
 namespace Mega
 {
@@ -53,6 +54,9 @@ namespace Mega
                         dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                             sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
                                             "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory);
+                    label1.Text = string.Format("Обработано накладных {0} из {1}", (i+1), sP_ListWayBillsResult.Length);
+                    label1.Refresh();
+                    dataGridView1.Refresh();
                 }
 
                 MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -85,6 +89,9 @@ namespace Mega
                         dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                             sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
                                             "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory);
+                    label1.Text = string.Format("Обработано накладных {0} из {1}", (i + 1), sP_ListWayBillsResult.Length);
+                    label1.Refresh();
+                    dataGridView1.Refresh();
                 }
 
                 MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
