@@ -33,74 +33,109 @@ namespace Mega
             button6.Enabled = true;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
-            try
+            await Task.Run(() =>
             {
-                dataGridView1.Rows.Clear();
-                SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(0);
-
-                for (int i = 0; i < sP_ListWayBillsResult.Length; i++)
+                try
                 {
-                    API newAPI = new API();
+                    dataGridView1.Rows.Clear();
+                    SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(0);
 
-                    newAPI.get_test(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode);
+                    for (int i = 0; i < sP_ListWayBillsResult.Length; i++)
+                    {
+                        API newAPI = new API();
 
-                    if (newAPI.dateofreceipt != null)
-                        dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
-                                            sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
-                                            newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory);
-                    else
-                        dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
-                                            sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
-                                            "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory);
-                    label1.Text = string.Format("Обработано накладных {0} из {1}", (i+1), sP_ListWayBillsResult.Length);
-                    label1.Refresh();
-                    dataGridView1.Refresh();
+                        newAPI.get_test(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode);
+
+                        if (InvokeRequired)
+                        {
+                            if (newAPI.dateofreceipt != null)
+                            {
+                                this.Invoke(new System.Action(() =>
+                                dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
+                                                        sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
+                                                        newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory)
+                                ));
+                            }
+                            else
+                                this.Invoke(new System.Action(() =>
+                                dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
+                                                sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
+                                                "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory)
+                                ));
+                            this.Invoke(new System.Action(() =>
+                                label1.Text = string.Format("Обработано накладных {0} из {1}", (i + 1), sP_ListWayBillsResult.Length)
+                            ));
+                            this.Invoke(new System.Action(() =>
+                                label1.Refresh()
+                            ));
+                            this.Invoke(new System.Action(() =>
+                                dataGridView1.Refresh()
+                            ));
+                        }
+                    }
+
+                    MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
-
-                MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            });
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            try
+            await Task.Run(() =>
             {
-                dataGridView1.Rows.Clear();
-                SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(1);
-
-                for (int i = 0; i < sP_ListWayBillsResult.Length; i++)
+                try
                 {
-                    API newAPI = new API();
+                    dataGridView1.Rows.Clear();
+                    SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(1);
 
-                    newAPI.get_test(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode);
+                    for (int i = 0; i < sP_ListWayBillsResult.Length; i++)
+                    {
+                        API newAPI = new API();
 
-                    if (newAPI.dateofreceipt != null)
-                        dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
-                                            sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
-                                            newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory);
-                    else
-                        dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
-                                            sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
-                                            "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory);
-                    label1.Text = string.Format("Обработано накладных {0} из {1}", (i + 1), sP_ListWayBillsResult.Length);
-                    label1.Refresh();
-                    dataGridView1.Refresh();
+                        newAPI.get_test(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode);
+                        if (InvokeRequired)
+                        {
+                            if (newAPI.dateofreceipt != null)
+                            {
+                                this.Invoke(new System.Action(() =>
+                                dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
+                                                        sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
+                                                        newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory)
+                                ));
+                            }
+                            else
+                                this.Invoke(new System.Action(() =>
+                                dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
+                                                sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
+                                                "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory)
+                                ));
+                            this.Invoke(new System.Action(() =>
+                                label1.Text = string.Format("Обработано накладных {0} из {1}", (i + 1), sP_ListWayBillsResult.Length)
+                            ));
+                            this.Invoke(new System.Action(() =>
+                                label1.Refresh()
+                            ));
+                            this.Invoke(new System.Action(() =>
+                                dataGridView1.Refresh()
+                            ));
+                        }
+                    }
+
+                    MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
-
-                MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            });
         }
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
