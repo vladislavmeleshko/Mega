@@ -201,8 +201,11 @@ namespace Mega
             try
             {
                 string[] invoices = richTextBox3.Text.Split();
+                richTextBox3.Text = "";
+                List<string> error_invoice = new List<string>();
                 int manifest = Convert.ToInt32(textBox1.Text.Replace('M', ' ').Replace('М', ' '));
                 int j = 1;
+                int count = 0;
                 for (int i = 0; i < invoices.Length; i++)
                 {
                     string response = api.addInvoiceToManifest(invoices[i], manifest);
@@ -210,11 +213,16 @@ namespace Mega
                     {
                         richTextBox2.Text += j + ")\t" + response + "\n\n";
                         j++;
+                        error_invoice.Add(invoices[i]);
+                        continue;
                     }
+                    count++;
                 }
-                richTextBox2.Text += "M" + manifest + ": накладные были добавлены в манифест!\n\n";
+                richTextBox2.Text += "M" + manifest + ": накладные были добавлены в манифест! Количество добавленных накладных " + count + "\n\n";
+                for (int i = 0; i < error_invoice.Count; i++)
+                    richTextBox3.Text += error_invoice[i] + "\n";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
