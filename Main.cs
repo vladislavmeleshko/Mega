@@ -58,14 +58,14 @@ namespace Mega
                                 this.Invoke(new System.Action(() =>
                                 dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                                         sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
-                                                        newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory)
+                                                        newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory, newAPI.adres)
                                 ));
                             }
                             else
                                 this.Invoke(new System.Action(() =>
                                 dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                                 sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
-                                                "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory)
+                                                "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory, newAPI.adres)
                                 ));
                             this.Invoke(new System.Action(() =>
                                 label1.Text = string.Format("Обработано накладных {0} из {1}", (i + 1), sP_ListWayBillsResult.Length)
@@ -112,14 +112,14 @@ namespace Mega
                                 this.Invoke(new System.Action(() =>
                                     dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                                         sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
-                                                        newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory)
+                                                        newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory, newAPI.adres)
                                 ));
                             }
                             else
                                 this.Invoke(new System.Action(() =>
                                     dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                                 sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
-                                                "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory)
+                                                "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory, newAPI.adres)
                                 ));
                             this.Invoke(new System.Action(() =>
                                 label1.Text = string.Format("Обработано накладных {0} из {1}", (i + 1), sP_ListWayBillsResult.Length)
@@ -132,7 +132,6 @@ namespace Mega
                             ));
                         }
                     }
-
                     MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }

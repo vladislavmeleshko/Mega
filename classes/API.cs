@@ -22,6 +22,7 @@ namespace Mega.classes
         public string namehistory { get; set; }
         public string datetimehistory { get; set; }
         public string comment { get; set; }
+        public string adres { get; set; }
 
         public API()
         {
@@ -52,19 +53,26 @@ namespace Mega.classes
         public void get_test(string WBNumber, int AgentCode, int AgentCode2, int CityCode)
         {
             SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
+            SP_Invoice_GenerResult[] sP_Invoice_GenerResults = mekus.me_oneInvoice(login, WBNumber);
             for (int i = 0; i < sP_Invoice_HistoryResult.Length; i++)
             {
                 if (sP_Invoice_HistoryResult[i].EventNum == 23 && sP_Invoice_HistoryResult[i].AgentCode == AgentCode)
-                    dateofshipment = sP_Invoice_HistoryResult[i].EventDate + " " + sP_Invoice_HistoryResult[i].EventTime;
-                else if (sP_Invoice_HistoryResult[i].EventNum == 47 && sP_Invoice_HistoryResult[i].AgentCode == AgentCode2)
                 {
-                    dateofreceipt = sP_Invoice_HistoryResult[i].EventDate + " " + sP_Invoice_HistoryResult[i].EventTime;
-                    dateofdaydeveliery = get_date_delivery(Convert.ToDateTime(dateofreceipt), AgentCode2, CityCode);
-                }
-                namehistory = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Event_Name;
-                datetimehistory = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventDate + " "
-                                    + sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventTime;
-                comment = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Comments;
+                    dateofshipment = sP_Invoice_HistoryResult[i].EventDate + " " + sP_Invoice_HistoryResult[i].EventTime;
+                    for(int j = i; j < sP_Invoice_HistoryResult.Length; j++)
+                    {
+                        if (sP_Invoice_HistoryResult[j].EventNum == 47 && sP_Invoice_HistoryResult[j].AgentCode == AgentCode2)
+                        {
+                            dateofreceipt = sP_Invoice_HistoryResult[j].EventDate + " " + sP_Invoice_HistoryResult[j].EventTime;
+                            dateofdaydeveliery = get_date_delivery(Convert.ToDateTime(dateofreceipt), AgentCode2, CityCode);
+                            adres = sP_Invoice_GenerResults[0].ConsigneeAdres;
+                            namehistory = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Event_Name;
+                            datetimehistory = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventDate + " "
+                                                + sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventTime;
+                            comment = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Comments;
+                        }
+                    }
+                }        
             }
         }
 
@@ -203,11 +211,29 @@ namespace Mega.classes
         public string get_date_delivery(DateTime date, int ConsigneeAgentConde, int ConsigneeCityCode)
         {
             SP_Agent_ZoneResult[] sP_Agent_ZoneResults = null;
+            SP_ListAgentsResult[] sP_ListAgentsResults = mekus.me_ListAgents(login);
             try
             {
                 if (date != DateTime.MinValue)
                 {
                     sP_Agent_ZoneResults = mekus.me_AgentZone(login, (short)ConsigneeAgentConde, DateTime.Today);
+                    for(int i = 0; i < sP_ListAgentsResults.Length; i++)
+                    { 
+                        if (sP_ListAgentsResults[i].AgentCode == ConsigneeAgentConde && sP_ListAgentsResults[i].AgentCityCode == ConsigneeCityCode)
+                        {
+                            if (date.DayOfWeek == DayOfWeek.Saturday)
+                            {
+                                date = date.AddDays(2);
+                                return date.ToString("dd.MM.yyyy");
+                            }
+                            else if (date.DayOfWeek == DayOfWeek.Sunday)
+                            {
+                                date = date.AddDays(1);
+                                return date.ToString("dd.MM.yyyy");
+                            }
+                            return date.ToString("dd.MM.yyyy");
+                        }
+                    }
                     for (int i = 0; i < sP_Agent_ZoneResults.Length; i++)
                     {
                         if (sP_Agent_ZoneResults[i].CityCode == ConsigneeCityCode)
@@ -229,7 +255,7 @@ namespace Mega.classes
                             }
                         }
                     }
-                    if (date.DayOfWeek == DayOfWeek.Saturday)
+                    /*if (date.DayOfWeek == DayOfWeek.Saturday)
                     {
                         date = date.AddDays(2);
                         return date.ToString("dd.MM.yyyy");
@@ -239,7 +265,7 @@ namespace Mega.classes
                         date = date.AddDays(1);
                         return date.ToString("dd.MM.yyyy");
                     }
-                    return date.ToString("dd.MM.yyyy");
+                    return date.ToString("dd.MM.yyyy");*/
                 }
                 return "";
             }
