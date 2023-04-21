@@ -100,10 +100,11 @@ namespace Mega
                     ));
                     SP_ListWayBillsResult[] sP_ListWayBillsResult = api.getAllInvoces(1);
 
+                    API newAPI = new API();
+
                     for (int i = 0; i < sP_ListWayBillsResult.Length; i++)
                     {
-                        API newAPI = new API();
-
+                        newAPI.clear_data();
                         newAPI.get_test(sP_ListWayBillsResult[i].WBNumber, (int)sP_ListWayBillsResult[i].ShipperAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeAgentCode, (int)sP_ListWayBillsResult[i].ConsigneeCityCode);
                         if (InvokeRequired)
                         {
@@ -196,67 +197,73 @@ namespace Mega
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string[] invoices = richTextBox3.Text.Split();
-                richTextBox3.Text = "";
-                List<string> error_invoice = new List<string>();
-                int manifest = Convert.ToInt32(textBox1.Text.Replace('M', ' ').Replace('М', ' '));
-                int j = 1;
-                int count = 0;
-                for (int i = 0; i < invoices.Length; i++)
+            await Task.Run(() =>
+            { 
+                try
                 {
-                    string response = api.addInvoiceToManifest(invoices[i], manifest);
-                    if (response != null)
+                    string[] invoices = richTextBox3.Text.Split();
+                    richTextBox3.Text = "";
+                    List<string> error_invoice = new List<string>();
+                    int manifest = Convert.ToInt32(textBox1.Text.Replace('M', ' ').Replace('М', ' '));
+                    int j = 1;
+                    int count = 0;
+                    for (int i = 0; i < invoices.Length; i++)
                     {
-                        richTextBox2.Text += j + ")\t" + response + "\n\n";
-                        j++;
-                        error_invoice.Add(invoices[i]);
-                        continue;
+                        string response = api.addInvoiceToManifest(invoices[i], manifest);
+                        if (response != null)
+                        {
+                            richTextBox2.Text += j + ")\t" + response + "\n\n";
+                            j++;
+                            error_invoice.Add(invoices[i]);
+                            continue;
+                        }
+                        count++;
                     }
-                    count++;
+                    richTextBox2.Text += "M" + manifest + ": накладные были добавлены в манифест! Количество добавленных накладных " + count + ". Количество накладных: " + invoices.Length + "\n\n";
+                    for (int i = 0; i < error_invoice.Count; i++)
+                        richTextBox3.Text += error_invoice[i] + "\n";
                 }
-                richTextBox2.Text += "M" + manifest + ": накладные были добавлены в манифест! Количество добавленных накладных " + count + "\n\n";
-                for (int i = 0; i < error_invoice.Count; i++)
-                    richTextBox3.Text += error_invoice[i] + "\n";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            });
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private async void button5_Click(object sender, EventArgs e)
         {
-            try
+            await Task.Run(() =>
             {
-                string[] invoices = richTextBox5.Text.Split();
-                int j = 1;
-                string response = null;
-
-                for(int i = 0; i < invoices.Length; i++)
+                try
                 {
-                    for(int z = 0; z < sP_ListEventsResults.Length; z++)
+                    string[] invoices = richTextBox5.Text.Split();
+                    int j = 1;
+                    string response = null;
+
+                    for (int i = 0; i < invoices.Length; i++)
                     {
-                        if(comboBox1.Text == sP_ListEventsResults[z].EventName)
+                        for (int z = 0; z < sP_ListEventsResults.Length; z++)
                         {
-                            response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, textBox2.Text, textBox3.Text);
-                            if (response != null)
+                            if (comboBox1.Text == sP_ListEventsResults[z].EventName)
                             {
-                                richTextBox4.Text += j + ")\t" + response + "\n\n";
-                                j++;
+                                response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, textBox2.Text, textBox3.Text);
+                                if (response != null)
+                                {
+                                    richTextBox4.Text += j + ")\t" + response + "\n\n";
+                                    j++;
+                                }
                             }
                         }
                     }
+                    richTextBox4.Text += "Истории были добавлены в накладные!\n\n";
                 }
-                richTextBox4.Text += "Истории были добавлены в накладные!\n\n";
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            });
         }
 
         private void button6_Click(object sender, EventArgs e)

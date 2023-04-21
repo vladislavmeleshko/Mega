@@ -15,6 +15,7 @@ namespace Mega.classes
         public МанифестыЗаказыНакладныеSoapClient mekus = new megaAPI.МанифестыЗаказыНакладныеSoapClient();
         public string mlp;
         public TicketHeader login = null;
+        public List<Agent> agents = new List<Agent>();
 
         public string dateofshipment { get; set; }
         public string dateofreceipt { get; set; }
@@ -23,6 +24,17 @@ namespace Mega.classes
         public string datetimehistory { get; set; }
         public string comment { get; set; }
         public string adres { get; set; }
+
+        public void clear_data()
+        {
+            dateofshipment = "";
+            dateofreceipt = "";
+            dateofdaydeveliery = "";
+            namehistory = "";
+            datetimehistory = "";
+            comment = "";
+            adres = "";
+        }
 
         public API()
         {
@@ -146,11 +158,30 @@ namespace Mega.classes
             {
                 if (date != DateTime.MinValue)
                 {
-                    sP_Agent_ZoneResults = mekus.me_AgentZone(login, (short)ConsigneeAgentConde, DateTime.Today);
-                    for(int i = 0; i < sP_ListAgentsResults.Length; i++)
+                    Agent agent = agents.Find(x => x.id_city == ConsigneeCityCode);
+                    if(agent != null)
+                    {
+                        if (date.DayOfWeek == DayOfWeek.Saturday || date.AddDays((double)agent.delivery_period - 1).DayOfWeek == DayOfWeek.Saturday)
+                        {
+                            date = date.AddDays(2 + (double)agent.delivery_period - 1);
+                            return date.ToString("dd.MM.yyyy");
+                        }
+                        else if (date.DayOfWeek == DayOfWeek.Sunday || date.AddDays((double)agent.delivery_period - 1).DayOfWeek == DayOfWeek.Sunday)
+                        {
+                            date = date.AddDays(1 + (double)agent.delivery_period - 1);
+                            return date.ToString("dd.MM.yyyy");
+                        }
+                        else
+                        {
+                            date = date.AddDays((double)agent.delivery_period);
+                            return date.ToString("dd.MM.yyyy");
+                        }
+                    }
+                    for (int i = 0; i < sP_ListAgentsResults.Length; i++)
                     { 
                         if (sP_ListAgentsResults[i].AgentCode == ConsigneeAgentConde && sP_ListAgentsResults[i].AgentCityCode == ConsigneeCityCode)
                         {
+                            agents.Add(new Agent(ConsigneeCityCode, 0));
                             if (date.DayOfWeek == DayOfWeek.Saturday)
                             {
                                 date = date.AddDays(2);
@@ -164,10 +195,12 @@ namespace Mega.classes
                             return date.ToString("dd.MM.yyyy");
                         }
                     }
+                    sP_Agent_ZoneResults = mekus.me_AgentZone(login, (short)ConsigneeAgentConde, DateTime.Today);
                     for (int i = 0; i < sP_Agent_ZoneResults.Length; i++)
                     {
                         if (sP_Agent_ZoneResults[i].CityCode == ConsigneeCityCode)
                         {
+                            agents.Add(new Agent(ConsigneeCityCode, (int)sP_Agent_ZoneResults[i].DeliveryTime));
                             if (date.DayOfWeek == DayOfWeek.Saturday || date.AddDays((double)sP_Agent_ZoneResults[i].DeliveryTime - 1).DayOfWeek == DayOfWeek.Saturday)
                             {
                                 date = date.AddDays(2 + (double)sP_Agent_ZoneResults[i].DeliveryTime - 1);
@@ -185,17 +218,6 @@ namespace Mega.classes
                             }
                         }
                     }
-                    /*if (date.DayOfWeek == DayOfWeek.Saturday)
-                    {
-                        date = date.AddDays(2);
-                        return date.ToString("dd.MM.yyyy");
-                    }
-                    else if (date.DayOfWeek == DayOfWeek.Sunday)
-                    {
-                        date = date.AddDays(1);
-                        return date.ToString("dd.MM.yyyy");
-                    }
-                    return date.ToString("dd.MM.yyyy");*/
                 }
                 return "";
             }

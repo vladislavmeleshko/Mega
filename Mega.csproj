@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\Agent.cs" />
     <Compile Include="classes\API.cs" />
     <Compile Include="classes\Report.cs" />
     <Compile Include="Connected Services\megaAPI\Reference.cs">
