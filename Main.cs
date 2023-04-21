@@ -197,73 +197,67 @@ namespace Mega
             }
         }
 
-        private async void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            await Task.Run(() =>
-            { 
-                try
+            try
+            {
+                string[] invoices = richTextBox3.Text.Split();
+                richTextBox3.Text = "";
+                List<string> error_invoice = new List<string>();
+                int manifest = Convert.ToInt32(textBox1.Text.Replace('M', ' ').Replace('М', ' '));
+                int j = 1;
+                int count = 0;
+                for (int i = 0; i < invoices.Length; i++)
                 {
-                    string[] invoices = richTextBox3.Text.Split();
-                    richTextBox3.Text = "";
-                    List<string> error_invoice = new List<string>();
-                    int manifest = Convert.ToInt32(textBox1.Text.Replace('M', ' ').Replace('М', ' '));
-                    int j = 1;
-                    int count = 0;
-                    for (int i = 0; i < invoices.Length; i++)
+                    string response = api.addInvoiceToManifest(invoices[i], manifest);
+                    if (response != null)
                     {
-                        string response = api.addInvoiceToManifest(invoices[i], manifest);
-                        if (response != null)
-                        {
-                            richTextBox2.Text += j + ")\t" + response + "\n\n";
-                            j++;
-                            error_invoice.Add(invoices[i]);
-                            continue;
-                        }
-                        count++;
+                        richTextBox2.Text += j + ")\t" + response + "\n\n";
+                        j++;
+                        error_invoice.Add(invoices[i]);
+                        continue;
                     }
-                    richTextBox2.Text += "M" + manifest + ": накладные были добавлены в манифест! Количество добавленных накладных " + count + ". Количество накладных: " + invoices.Length + "\n\n";
-                    for (int i = 0; i < error_invoice.Count; i++)
-                        richTextBox3.Text += error_invoice[i] + "\n";
+                    count++;
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            });
+                richTextBox2.Text += "M" + manifest + ": накладные были добавлены в манифест! Количество добавленных накладных " + count + ". Количество накладных: " + invoices.Length + "\n\n";
+                for (int i = 0; i < error_invoice.Count; i++)
+                    richTextBox3.Text += error_invoice[i] + "\n";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private async void button5_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
-            await Task.Run(() =>
+            try
             {
-                try
-                {
-                    string[] invoices = richTextBox5.Text.Split();
-                    int j = 1;
-                    string response = null;
+                string[] invoices = richTextBox5.Text.Split();
+                int j = 1;
+                string response = null;
 
-                    for (int i = 0; i < invoices.Length; i++)
+                for (int i = 0; i < invoices.Length; i++)
+                {
+                    for (int z = 0; z < sP_ListEventsResults.Length; z++)
                     {
-                        for (int z = 0; z < sP_ListEventsResults.Length; z++)
+                        if (comboBox1.Text == sP_ListEventsResults[z].EventName)
                         {
-                            if (comboBox1.Text == sP_ListEventsResults[z].EventName)
+                            response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, textBox2.Text, textBox3.Text);
+                            if (response != null)
                             {
-                                response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, textBox2.Text, textBox3.Text);
-                                if (response != null)
-                                {
-                                    richTextBox4.Text += j + ")\t" + response + "\n\n";
-                                    j++;
-                                }
+                                richTextBox4.Text += j + ")\t" + response + "\n\n";
+                                j++;
                             }
                         }
                     }
-                    richTextBox4.Text += "Истории были добавлены в накладные!\n\n";
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            });
+                richTextBox4.Text += "Истории были добавлены в накладные!\n\n";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
