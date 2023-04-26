@@ -274,11 +274,13 @@ namespace Mega.classes
                     invoice.FedexNumber = wBInManifests[i].FedexNum;
                     invoice.VolumeWeight = Convert.ToDecimal(wBInManifests[i].WBVolumeWeight);
                     invoice.WBDescription = wBInManifests[i].WBDescription;
-                    invoice.FreightRUR = Convert.ToString(wBInManifests[i].Freight_RUR).Replace(".", ",");
                     if (wBInManifests[i].WhoWillPay == 1)
                         invoice.WhoWillPay = "Отправитель";
                     else if (wBInManifests[i].WhoWillPay == 2)
+                    {
                         invoice.WhoWillPay = "Получатель";
+                        invoice.FreightRUR = Convert.ToString(wBInManifests[i].Freight_RUR).Replace(".", ",");
+                    }
                     else if (wBInManifests[i].WhoWillPay == 3)
                         invoice.WhoWillPay = "3-я сторона";
                     if (wBInManifests[i].PaymentType == 1 && wBInManifests[i].WhoWillPay != 3)
