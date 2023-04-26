@@ -260,7 +260,7 @@ namespace Mega.classes
                     invoice.ConsigneePhone = wBInManifests[i].ConsigneePhone;
                     invoice.ConsigneeAddress = wBInManifests[i].ConsigneeAdres;
                     invoice.WBWeight = Convert.ToDecimal(wBInManifests[i].WBWeight);
-                    invoice.Places = wBInManifests[i].Places.Length;
+                    invoice.Places = Convert.ToInt32(wBInManifests[i].WBPackage);
                     invoice.Status = wBInManifests[i].NaklStatus;
                     invoice.WBOldNumber = wBInManifests[i].WBOldNumber;
                     invoice.FedexNumber = wBInManifests[i].FedexNum;
