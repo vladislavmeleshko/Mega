@@ -56,8 +56,9 @@ namespace Mega.classes
         public SP_ListWayBillsResult[] getAllInvoces(int type_invoice)
         {
             try
+            {
                 auth();
-            {   if(type_invoice == 0)
+                if (type_invoice == 0)
                     return mekus.Me_ListWayBills(login, DateTime.Now.AddDays(-90), DateTime.Now.AddDays(-1), null, 394, null, false, null);
                 else return mekus.Me_ListWayBills(login, DateTime.Now.AddDays(-90), DateTime.Now.AddDays(-1), null, null, 394, false, null);
             }
