@@ -325,13 +325,24 @@ namespace Mega
                 {
                     for (int i = dataGridView1.Rows.Count - 1; i >= 0; i--)
                     {
+                        SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = api.mekus.me_OneInvoiceHistory(api.login, dataGridView1.Rows[i].Cells[0].Value.ToString());
                         Invoke(new System.Action(() => label1.Text = "Осталось обработать накладных " + i));
                         Invoke(new System.Action(() => label1.Update()));
                         Invoke(new System.Action(() => dataGridView1.Update()));
                         int check = api.updateInvoice(dataGridView1.Rows[i].Cells[0].Value.ToString());
-                        if (check == 1) 
+                        if (check == 1)
                             Invoke(new System.Action(() => dataGridView1.Rows.RemoveAt(i)));
-                        else continue;
+                        else
+                        {
+                            if(sP_Invoice_HistoryResult.Length > 0)
+                            {
+                                Invoke(new System.Action(() => dataGridView1.Rows[i].Cells[7].Value = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Event_Name));
+                                Invoke(new System.Action(() => dataGridView1.Rows[i].Cells[8].Value = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Comments));
+                                Invoke(new System.Action(() => dataGridView1.Rows[i].Cells[9].Value = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventDate +
+                                                                " " + sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventTime));
+                            }
+                            continue;
+                        }
                     }
                 }
                 catch (Exception ex)
