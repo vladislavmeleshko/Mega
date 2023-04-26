@@ -266,7 +266,7 @@ namespace Mega.classes
                     invoice.FedexNumber = wBInManifests[i].FedexNum;
                     invoice.VolumeWeight = Convert.ToDecimal(wBInManifests[i].WBVolumeWeight);
                     invoice.WBDescription = wBInManifests[i].WBDescription;
-                    invoice.FreightRUR = Convert.ToString(wBInManifests[i].Freight_RUR).Replace(".", ",");
+                    invoice.FreightRUR = Convert.ToString(wBInManifests[i].Insurance_RUR).Replace(".", ",");
                     if (wBInManifests[i].WhoWillPay == 1)
                         invoice.WhoWillPay = "Отправитель";
                     else if (wBInManifests[i].WhoWillPay == 2)
