@@ -316,5 +316,29 @@ namespace Mega
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private async void button8_Click(object sender, EventArgs e)
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    for (int i = dataGridView1.Rows.Count - 1; i >= 0; i--)
+                    {
+                        Invoke(new System.Action(() => label1.Text = "Осталось обработать накладных " + i));
+                        Invoke(new System.Action(() => label1.Update()));
+                        Invoke(new System.Action(() => dataGridView1.Update()));
+                        int check = api.updateInvoice(dataGridView1.Rows[i].Cells[0].Value.ToString());
+                        if (check == 1) 
+                            Invoke(new System.Action(() => dataGridView1.Rows.RemoveAt(i)));
+                        else continue;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            });
+        }
     }
 }

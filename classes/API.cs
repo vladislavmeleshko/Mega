@@ -227,6 +227,14 @@ namespace Mega.classes
             }
         }
 
+        public int updateInvoice(string number)
+        {
+            SP_Invoice_GenerResult [] sP_Invoice_GenerResult = mekus.me_oneInvoice(login, number);
+            if (sP_Invoice_GenerResult[0].WBCloseDate != null)
+                return 1;
+            else return 0;
+        }
+
         public Report get_invoices_in_manifest(string manifest)
         {
             WBInManifest[] wBInManifests = null;
@@ -260,13 +268,13 @@ namespace Mega.classes
                     invoice.ConsigneePhone = wBInManifests[i].ConsigneePhone;
                     invoice.ConsigneeAddress = wBInManifests[i].ConsigneeAdres;
                     invoice.WBWeight = Convert.ToDecimal(wBInManifests[i].WBWeight);
-                    invoice.Places = Convert.ToInt32(wBInManifests[i].WBPackage);
+                    invoice.Places = Convert.ToInt32(wBInManifests[i].Places.Length);
                     invoice.Status = wBInManifests[i].NaklStatus;
                     invoice.WBOldNumber = wBInManifests[i].WBOldNumber;
                     invoice.FedexNumber = wBInManifests[i].FedexNum;
                     invoice.VolumeWeight = Convert.ToDecimal(wBInManifests[i].WBVolumeWeight);
                     invoice.WBDescription = wBInManifests[i].WBDescription;
-                    invoice.FreightRUR = Convert.ToString(wBInManifests[i].Insurance_RUR).Replace(".", ",");
+                    invoice.FreightRUR = Convert.ToString(wBInManifests[i].Freight_RUR).Replace(".", ",");
                     if (wBInManifests[i].WhoWillPay == 1)
                         invoice.WhoWillPay = "Отправитель";
                     else if (wBInManifests[i].WhoWillPay == 2)
