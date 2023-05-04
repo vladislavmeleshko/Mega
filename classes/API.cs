@@ -121,7 +121,73 @@ namespace Mega.classes
                 auth();
                 sP_Manifest_NaklAddResults = mekus.me_Manifest_NaklAdd(login, manifest, invoice);
                 if (sP_Manifest_NaklAddResults[0].ResCode != 0)
-                    return invoice + "\t" + sP_Manifest_NaklAddResults[0].ResText + "\tM" + manifest;
+                {
+                    if (sP_Manifest_NaklAddResults[0].ResCode == 8)
+                    {
+                        SP_Invoice_GenerResult[] sP_Invoice_GenerResults = mekus.me_oneInvoice(login, invoice);
+                        if (sP_Invoice_GenerResults[0].TransitMoscow == 0)
+                        {
+                            WbInputInfo wbInputInfo = new WbInputInfo
+                            {
+                                WbNumber = invoice,
+                                WbOldNumber = sP_Invoice_GenerResults[0].WBOldNumber,
+                                ShipperLastName = sP_Invoice_GenerResults[0].ShipperLastName,
+                                ShipperCityCode = sP_Invoice_GenerResults[0].ShipperCityCode,
+                                ShipperCompany = sP_Invoice_GenerResults[0].ShipperCompany,
+                                ShipperPhone = sP_Invoice_GenerResults[0].ShipperPhone,
+                                ShipperPostIndex = sP_Invoice_GenerResults[0].ShipperPostIndex,
+                                ShipperAddress = sP_Invoice_GenerResults[0].ShipperAdres,
+                                ConsigneeLastName = sP_Invoice_GenerResults[0].ConsigneeLastName,
+                                ConsigneeCityCode = sP_Invoice_GenerResults[0].ConsigneeCityCode,
+                                WhoWillPay = sP_Invoice_GenerResults[0].WhoWillPay,
+                                PaymentType = sP_Invoice_GenerResults[0].PaymentType,
+                                WbDescription = sP_Invoice_GenerResults[0].WBDescription,
+                                WbPackage = sP_Invoice_GenerResults[0].WBPackage,
+                                WbOpenDate = sP_Invoice_GenerResults[0].WBOpenDate,
+                                WbWeight = Convert.ToDecimal(sP_Invoice_GenerResults[0].WBWeight.Replace(".", ",")),
+                                WbLength = sP_Invoice_GenerResults[0].WBLength,
+                                ConsigneeCompany = sP_Invoice_GenerResults[0].ConsigneeCompany,
+                                ConsigneePhone = sP_Invoice_GenerResults[0].ConsigneePhone,
+                                ConsigneePostIndex = sP_Invoice_GenerResults[0].ConsigneePostIndex,
+                                ConsigneeAddress = sP_Invoice_GenerResults[0].ConsigneeAdres, 
+                                TransitMoscow = true
+                            };
+                            mekus.me_oneInvoice_InputInfo(login, wbInputInfo);
+                            return addInvoiceToManifest(invoice, manifest);
+                        }
+                        else
+                        {
+                            WbInputInfo wbInputInfo = new WbInputInfo
+                            {
+                                WbNumber = invoice,
+                                WbOldNumber = sP_Invoice_GenerResults[0].WBOldNumber,
+                                ShipperLastName = sP_Invoice_GenerResults[0].ShipperLastName,
+                                ShipperCityCode = sP_Invoice_GenerResults[0].ShipperCityCode,
+                                ShipperCompany = sP_Invoice_GenerResults[0].ShipperCompany,
+                                ShipperPhone = sP_Invoice_GenerResults[0].ShipperPhone,
+                                ShipperPostIndex = sP_Invoice_GenerResults[0].ShipperPostIndex,
+                                ShipperAddress = sP_Invoice_GenerResults[0].ShipperAdres,
+                                ConsigneeLastName = sP_Invoice_GenerResults[0].ConsigneeLastName,
+                                ConsigneeCityCode = sP_Invoice_GenerResults[0].ConsigneeCityCode,
+                                WhoWillPay = sP_Invoice_GenerResults[0].WhoWillPay,
+                                PaymentType = sP_Invoice_GenerResults[0].PaymentType,
+                                WbDescription = sP_Invoice_GenerResults[0].WBDescription,
+                                WbPackage = sP_Invoice_GenerResults[0].WBPackage,
+                                WbOpenDate = sP_Invoice_GenerResults[0].WBOpenDate,
+                                WbWeight = Convert.ToDecimal(sP_Invoice_GenerResults[0].WBWeight.Replace(".", ",")),
+                                WbLength = sP_Invoice_GenerResults[0].WBLength,
+                                ConsigneeCompany = sP_Invoice_GenerResults[0].ConsigneeCompany,
+                                ConsigneePhone = sP_Invoice_GenerResults[0].ConsigneePhone,
+                                ConsigneePostIndex = sP_Invoice_GenerResults[0].ConsigneePostIndex,
+                                ConsigneeAddress = sP_Invoice_GenerResults[0].ConsigneeAdres,
+                                TransitMoscow = false
+                            };
+                            mekus.me_oneInvoice_InputInfo(login, wbInputInfo);
+                            return addInvoiceToManifest(invoice, manifest);
+                        }
+                    }
+                    else return invoice + "\t" + sP_Manifest_NaklAddResults[0].ResText + "\tM" + manifest;
+                }
                 return null;
             }
             catch(Exception)
