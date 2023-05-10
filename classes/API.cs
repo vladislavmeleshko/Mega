@@ -21,6 +21,9 @@ namespace Mega.classes
         public string dateofreceipt { get; set; }
         public string dateofdaydeveliery { get; set; }
         public string namehistory { get; set; }
+        public string submiter { get; set; }
+        public string WBCloseDate { get; set; }
+        public string WBCloseTime { get; set; }
         public string datetimehistory { get; set; }
         public string comment { get; set; }
         public string adres { get; set; }
@@ -34,6 +37,9 @@ namespace Mega.classes
             datetimehistory = "";
             comment = "";
             adres = "";
+            submiter = "";
+            WBCloseDate = "";
+            WBCloseTime = "";
         }
 
         public API()
@@ -96,20 +102,25 @@ namespace Mega.classes
             }
         }
 
-        public string get_info_for_delivery(string invoice)
+        public int get_info_for_delivery(string number)
         {
             try
             {
                 auth();
-                SP_Invoice_HistoryResult[] sP_Invoice_HistoryResults = mekus.me_OneInvoiceHistory(login, invoice);
-                for (int i = 0; i < sP_Invoice_HistoryResults.Length; i++)
-                    if (sP_Invoice_HistoryResults[i].EventNum == 24)
-                        return invoice + " " + sP_Invoice_HistoryResults[i].EventDate + " " + sP_Invoice_HistoryResults[i].EventTime + " " + sP_Invoice_HistoryResults[i].Comments;
-                return null;
+                SP_Invoice_GenerResult[] sP_Invoice_GenerResults = mekus.me_oneInvoice(login, number);
+                if (sP_Invoice_GenerResults[0].WBCloseDate != null)
+                {
+                    clear_data();
+                    WBCloseDate = sP_Invoice_GenerResults[0].WBCloseDate.ToString();
+                    WBCloseTime = sP_Invoice_GenerResults[0].WBCloseTime;
+                    submiter = sP_Invoice_GenerResults[0].Submitter;
+                    return 1;
+                }
+                return 0;
             }
             catch(Exception)
             {
-                return null;
+                return 0;
             }
         }
 

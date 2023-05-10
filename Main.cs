@@ -175,14 +175,12 @@ namespace Mega
 
                 for(int i = 0; i < list_invoices.Length; i++)
                 {
-                    string info = api.get_info_for_delivery(list_invoices[i]);
-                    if (info != null)
+                    if(api.get_info_for_delivery(list_invoices[i]) == 1)
                     {
-                        string[] info_two = info.Split();
-                        xlSht.Cells[j, 1] = info_two[0];
-                        xlSht.Cells[j, 2] = info_two[1];
-                        xlSht.Cells[j, 3] = info_two[2];
-                        xlSht.Cells[j, 4] = info_two[3];
+                        xlSht.Cells[j, 1] = list_invoices[i];
+                        xlSht.Cells[j, 2] = api.WBCloseDate;
+                        xlSht.Cells[j, 3] = api.WBCloseTime;
+                        xlSht.Cells[j, 4] = api.submiter;
                         j++;
                     }
                 }
