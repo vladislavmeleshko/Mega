@@ -64,7 +64,6 @@ namespace Mega.classes
         {
             try
             {
-                auth();
                 if (type_invoice == 0)
                     return mekus.Me_ListWayBills(login, DateTime.Now.AddDays(-90), DateTime.Now.AddDays(-1), null, 394, null, false, null);
                 else return mekus.Me_ListWayBills(login, DateTime.Now.AddDays(-90), DateTime.Now.AddDays(-1), null, null, 394, false, null);
@@ -107,7 +106,6 @@ namespace Mega.classes
         {
             try
             {
-                auth();
                 SP_Invoice_GenerResult[] sP_Invoice_GenerResults = mekus.me_oneInvoice(login, number);
                 if (sP_Invoice_GenerResults[0].WBCloseDate != null)
                 {
@@ -130,7 +128,6 @@ namespace Mega.classes
             SP_Manifest_NaklAddResult[] sP_Manifest_NaklAddResults = null;
             try
             {
-                auth();
                 sP_Manifest_NaklAddResults = mekus.me_Manifest_NaklAdd(login, manifest, invoice);
                 if (sP_Manifest_NaklAddResults[0].ResCode != 0)
                     return invoice + "\t" + sP_Manifest_NaklAddResults[0].ResText + "\tM" + manifest;
@@ -146,7 +143,6 @@ namespace Mega.classes
         {
             try
             {
-                auth();
                 return mekus.me_ListEvents(login);
             }
             catch (Exception)
@@ -160,7 +156,6 @@ namespace Mega.classes
             SP_InvoiceHistAddResult[] sP_InvoiceHistAddResults = null;
             try
             {
-                auth();
                 if (time != "")
                     sP_InvoiceHistAddResults = mekus.me_InvoiceHistoryAdd(login, WBNumber, 1367, (byte)id_history, DateTime.Now.Date, time, comment);
                 else sP_InvoiceHistAddResults = mekus.me_InvoiceHistoryAdd(login, WBNumber, 1367, (byte)id_history, DateTime.Now.Date, DateTime.Now.ToString("hh:mm"), comment);
@@ -176,7 +171,6 @@ namespace Mega.classes
 
         public string get_date_delivery(DateTime date, int ConsigneeAgentConde, int ConsigneeCityCode)
         {
-            auth();
             SP_Agent_ZoneResult[] sP_Agent_ZoneResults = null;
             SP_ListAgentsResult[] sP_ListAgentsResults = mekus.me_ListAgents(login);
             try
@@ -254,7 +248,6 @@ namespace Mega.classes
 
         public int updateInvoice(string number)
         {
-            auth();
             SP_Invoice_GenerResult [] sP_Invoice_GenerResult = mekus.me_oneInvoice(login, number);
             if (sP_Invoice_GenerResult[0].WBCloseDate != null)
                 return 1;
@@ -327,7 +320,6 @@ namespace Mega.classes
 
         public Report get_invoices_out_manifest(string[] number, int i)
         {
-            auth();
             SP_Invoice_GenerResult[] sP_Invoice_GenerResults = null;
             Report report = new Report();
             int j = i;
@@ -391,7 +383,6 @@ namespace Mega.classes
 
         public SP_ListManifestsResult[] get_manifest_for_date(DateTime date)
         {
-            auth();
             try
             {
                 return mekus.me_ListManifests(login, date);

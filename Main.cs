@@ -32,6 +32,7 @@ namespace Mega
             {
                 try
                 {
+                    api.auth();
                     this.Invoke(new System.Action(() =>
                         dataGridView1.Rows.Clear()
                     ));
@@ -88,6 +89,7 @@ namespace Mega
             {
                 try
                 {
+                    api.auth();
                     this.Invoke(new System.Action(() =>
                         dataGridView1.Rows.Clear()
                     ));
@@ -155,6 +157,8 @@ namespace Mega
         {
             try
             {
+                api.auth();
+
                 string[] list_invoices = richTextBox1.Text.Split();
 
                 Workbook xlWB;
@@ -188,31 +192,36 @@ namespace Mega
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private async void button4_Click(object sender, EventArgs e)
         {
             try
             {
+                api.auth();
                 string[] invoices = richTextBox3.Text.Split();
                 richTextBox3.Text = "";
                 List<string> error_invoice = new List<string>();
                 int manifest = Convert.ToInt32(textBox1.Text.Replace('M', ' ').Replace('М', ' '));
                 int j = 1;
                 int count = 0;
-                for (int i = 0; i < invoices.Length; i++)
+
+                await Task.Run(() =>
                 {
-                    string response = api.addInvoiceToManifest(invoices[i], manifest);
-                    if (response != null)
+                    for (int i = 0; i < invoices.Length; i++)
                     {
-                        richTextBox2.Text += j + ")\t" + response + "\n\n";
-                        j++;
-                        error_invoice.Add(invoices[i]);
-                        continue;
+                        string response = api.addInvoiceToManifest(invoices[i], manifest);
+                        if (response != null)
+                        {
+                            this.Invoke(new System.Action(() => richTextBox2.Text += j + ")\t" + response + "\n\n"));
+                            j++;
+                            error_invoice.Add(invoices[i]);
+                            continue;
+                        }
+                        count++;
                     }
-                    count++;
-                }
-                richTextBox2.Text += "M" + manifest + ": накладные были добавлены в манифест! Количество добавленных накладных " + count + ". Количество накладных: " + invoices.Length + "\n\n";
-                for (int i = 0; i < error_invoice.Count; i++)
-                    richTextBox3.Text += error_invoice[i] + "\n";
+                    this.Invoke(new System.Action(() => richTextBox2.Text += "M" + manifest + ": накладные были добавлены в манифест! Количество добавленных накладных " + count + ". Количество накладных: " + invoices.Length + "\n\n"));
+                    for (int i = 0; i < error_invoice.Count; i++)
+                        this.Invoke(new System.Action(() => richTextBox3.Text += error_invoice[i] + "\n"));
+                });
             }
             catch (Exception ex)
             {
@@ -255,6 +264,7 @@ namespace Mega
         {
             try
             {
+                api.auth();
                 SP_ListManifestsResult[] sP_ListManifestsResults = api.get_manifest_for_date(dateTimePicker1.Value.Date);
                 for (int i = 0; i < sP_ListManifestsResults.Length; i++)
                 {
@@ -290,6 +300,7 @@ namespace Mega
         {
             try
             {
+                api.auth();
                 string[] number = richTextBox6.Text.Split();
                 Report result = api.get_invoices_out_manifest(number, 0);
                 if (result != null)
@@ -314,6 +325,7 @@ namespace Mega
             {
                 try
                 {
+                    api.auth();
                     SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = null;
                     for (int i = dataGridView1.Rows.Count - 1; i >= 0; i--)
                     {
