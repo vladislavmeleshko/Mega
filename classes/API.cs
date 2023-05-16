@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -466,6 +467,20 @@ namespace Mega.classes
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
-        } 
+        }
+        
+        public int inputdeliveryforliga(MESchemeDeliveryUpdate delivery)
+        {
+            try
+            {
+                liga.AgentsWebServiceSoapClient agentsWebServiceSoapClient = new liga.AgentsWebServiceSoapClient();                
+                agentsWebServiceSoapClient.Delivered(Convert.ToInt32(delivery.WBNumber), Convert.ToDateTime(delivery.DeliveryDate + " " + delivery.DeliveryTime), delivery.Submitter, "", 0, false);
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;   
+            }
+        }
     }
 }

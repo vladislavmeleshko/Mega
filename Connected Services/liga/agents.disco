@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://ltl-ws.major-express.ru/liga/agents.asmx?wsdl" docRef="https://ltl-ws.major-express.ru/liga/agents.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://ltl-ws.major-express.ru/liga/agents.asmx" xmlns:q1="http://ltl-ws.major-express.ru/liga/" binding="q1:AgentsWebServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://ltl-ws.major-express.ru/liga/agents.asmx" xmlns:q2="http://ltl-ws.major-express.ru/liga/" binding="q2:AgentsWebServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

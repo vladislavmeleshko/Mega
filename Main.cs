@@ -2,11 +2,6 @@
 using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,8 +9,6 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Xml.Serialization;
 using System.IO;
 using Mega.megaAPI;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Threading;
 
 namespace Mega
 {
@@ -352,6 +345,37 @@ namespace Mega
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             });
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                openFileDialog1.ShowDialog();
+                openFileDialog1.Title = "Выберите файл для выгрузки в LIGA";
+                
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(MEScheme));
+                using (FileStream fs = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read))
+                {
+                    MEScheme mEScheme = xmlSerializer.Deserialize(fs) as MEScheme;
+
+                    if(mEScheme != null)
+                    {
+                        for(int i = 0; i < mEScheme.DeliveryUpdate.Length; i++)
+                        {
+                            if (api.inputdeliveryforliga(mEScheme.DeliveryUpdate[i]) == 0)
+                            {
+                                MessageBox.Show("Не удалось выгрузить накладную " + mEScheme.DeliveryUpdate[i].WBNumber);
+                            }
+                        }
+                        MessageBox.Show("ДД были выгружены в LIGA!");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
