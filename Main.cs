@@ -229,7 +229,7 @@ namespace Mega
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private async void button5_Click(object sender, EventArgs e)
         {
             try
             {
@@ -237,22 +237,25 @@ namespace Mega
                 int j = 1;
                 string response = null;
 
-                for (int i = 0; i < invoices.Length; i++)
+                await Task.Run(() =>
                 {
-                    for (int z = 0; z < sP_ListEventsResults.Length; z++)
+                    for (int i = 0; i < invoices.Length; i++)
                     {
-                        if (comboBox1.Text == sP_ListEventsResults[z].EventName)
+                        for (int z = 0; z < sP_ListEventsResults.Length; z++)
                         {
-                            response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, textBox2.Text, textBox3.Text);
-                            if (response != null)
+                            if (comboBox1.Text == sP_ListEventsResults[z].EventName)
                             {
-                                richTextBox4.Text += j + ")\t" + response + "\n\n";
-                                j++;
+                                response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, textBox2.Text, textBox3.Text);
+                                if (response != null)
+                                {
+                                    this.Invoke(new System.Action(() => richTextBox4.Text += j + ")\t" + response + "\n\n"));
+                                    j++;
+                                }
                             }
                         }
                     }
-                }
-                richTextBox4.Text += "Истории были добавлены в накладные!\n\n";
+                    this.Invoke(new System.Action(() => richTextBox4.Text += "Истории были добавлены в накладные!\n\n"));
+                });
             }
             catch (Exception ex)
             {
