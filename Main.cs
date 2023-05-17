@@ -233,6 +233,7 @@ namespace Mega
         {
             try
             {
+                api.auth();
                 string[] invoices = richTextBox5.Text.Split();
                 int j = 1;
                 string response = null;
