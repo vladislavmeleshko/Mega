@@ -197,30 +197,37 @@ namespace Mega
             try
             {
                 api.auth();
+
+                List<string> error_invoice = new List<string>();
+
                 string[] invoices = richTextBox3.Text.Split();
+                
+                int manifest = Convert.ToInt32(textBox1.Text.Replace('M', ' ').Replace('М', ' '));
+                int j = 1;
+                int count = 0;
+
                 richTextBox3.Text = "";
 
                 await Task.Run(() =>
                 {
-                    int manifest = Convert.ToInt32(textBox1.Text.Replace('M', ' ').Replace('М', ' '));
-                    int j = 1;
-                    int count = 0;
-                    List<string> error_invoice = new List<string>();
-                    for (int i = 0; i < invoices.Length; i++)
+                    string[] invoices_task = invoices;
+                    int manifest_task = manifest;
+
+                    for (int i = 0; i < invoices_task.Length; i++)
                     {
-                        string response = api.addInvoiceToManifest(invoices[i], manifest);
+                        string response = api.addInvoiceToManifest(invoices_task[i], manifest_task);
                         if (response != null)
                         {
                             this.Invoke(new System.Action(() => richTextBox2.Text += j + ")\t" + response + "\n\n"));
                             j++;
-                            error_invoice.Add(invoices[i]);
+                            error_invoice.Add(invoices_task[i]);
                             continue;
                         }
                         count++;
                     }
                     this.Invoke(new System.Action(() => richTextBox2.Text += string.Format("[M{0}] накладные были добавлены в манифест. " +
                                                                                             "Кол-во накладных: {1}, успешно: {2}",
-                                                                                            manifest, invoices.Length, invoices.Length - j)));
+                                                                                            manifest_task, invoices_task.Length, invoices_task.Length - j)));
                     for (int i = 0; i < error_invoice.Count; i++)
                         this.Invoke(new System.Action(() => richTextBox3.Text += error_invoice[i] + "\n"));
                 });
@@ -236,22 +243,28 @@ namespace Mega
             try
             {
                 api.auth();
+
                 string[] invoices = richTextBox5.Text.Split();
+                
+                string response = null;
+                string comments = textBox2.Text;
+                string event_name = comboBox1.Text;
+                
+                int j = 1;
 
                 await Task.Run(() =>
                 {
-                    int j = 1;
-                    string response = null;
-                    string comments = textBox2.Text;
-                    string event_name = comboBox1.Text;
+                    string[] invoices_task = invoices;
+                    string event_name_task = event_name;
+                    string comments_task = comments;
 
-                    for (int i = 0; i < invoices.Length; i++)
+                    for (int i = 0; i < invoices_task.Length; i++)
                     {
                         for (int z = 0; z < sP_ListEventsResults.Length; z++)
                         {
-                            if (event_name == sP_ListEventsResults[z].EventName)
+                            if (event_name_task == sP_ListEventsResults[z].EventName)
                             {
-                                response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, comments, textBox3.Text);
+                                response = api.set_history_invoice(invoices_task[i], sP_ListEventsResults[z].EventNum, comments_task, textBox3.Text);
                                 if (response != null)
                                 {
                                     this.Invoke(new System.Action(() => richTextBox4.Text += j + ")\t" + response + "\n\n"));
@@ -262,7 +275,7 @@ namespace Mega
                     }
                     this.Invoke(new System.Action(() => richTextBox4.Text += string.Format("[{0}] Истории были добавлены в накладные! " +
                                                                                             "Кол-во накладных: {1}, успешно: {2} \n\n",
-                                                                                            comments, invoices.Length, invoices.Length - j)));
+                                                                                            comments_task, invoices_task.Length, invoices_task.Length - j)));
                 });
             }
             catch (Exception ex)
