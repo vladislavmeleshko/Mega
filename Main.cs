@@ -226,8 +226,8 @@ namespace Mega
                         count++;
                     }
                     this.Invoke(new System.Action(() => richTextBox2.Text += string.Format("[M{0}] накладные были добавлены в манифест. " +
-                                                                                            "Кол-во накладных: {1}, успешно: {2}\n\n",
-                                                                                            manifest_task, invoices_task.Length, invoices_task.Length - j)));
+                                                                                            "Кол-во накладных: {1}, успешно: {2}, ошибок: {3}\n\n",
+                                                                                            manifest_task, invoices_task.Length, invoices_task.Length - j, j)));
                     for (int i = 0; i < error_invoice.Count; i++)
                         this.Invoke(new System.Action(() => richTextBox3.Text += error_invoice[i] + "\n"));
                 });
@@ -274,8 +274,8 @@ namespace Mega
                         }
                     }
                     this.Invoke(new System.Action(() => richTextBox4.Text += string.Format("[{0}] Истории были добавлены в накладные! " +
-                                                                                            "Кол-во накладных: {1}, успешно: {2} \n\n",
-                                                                                            comments_task, invoices_task.Length, invoices_task.Length - j)));
+                                                                                            "Кол-во накладных: {1}, успешно: {2}, ошибок: {3}\n\n",
+                                                                                            comments_task, invoices_task.Length, invoices_task.Length - j, j)));
                 });
             }
             catch (Exception ex)
