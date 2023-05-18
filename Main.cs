@@ -237,13 +237,14 @@ namespace Mega
             {
                 api.auth();
                 string[] invoices = richTextBox5.Text.Split();
-                int j = 1;
-                string response = null;
-                string event_name = comboBox1.Text;
 
                 await Task.Run(() =>
                 {
+                    int j = 1;
+                    string response = null;
                     string comments = textBox2.Text;
+                    string event_name = comboBox1.Text;
+
                     for (int i = 0; i < invoices.Length; i++)
                     {
                         for (int z = 0; z < sP_ListEventsResults.Length; z++)
