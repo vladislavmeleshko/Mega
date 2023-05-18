@@ -218,7 +218,9 @@ namespace Mega
                         }
                         count++;
                     }
-                    this.Invoke(new System.Action(() => richTextBox2.Text += "M" + manifest + ": накладные были добавлены в манифест! Количество добавленных накладных " + count + ". Количество накладных: " + invoices.Length + "\n\n"));
+                    this.Invoke(new System.Action(() => richTextBox2.Text += string.Format("[M{0}] накладные были добавлены в манифест. " +
+                                                                                            "Кол-во накладных: {1}, успешно: {2}",
+                                                                                            manifest, invoices.Length, invoices.Length - j)));
                     for (int i = 0; i < error_invoice.Count; i++)
                         this.Invoke(new System.Action(() => richTextBox3.Text += error_invoice[i] + "\n"));
                 });
@@ -237,6 +239,7 @@ namespace Mega
                 string[] invoices = richTextBox5.Text.Split();
                 int j = 1;
                 string response = null;
+                string event_name = comboBox1.Text;
 
                 await Task.Run(() =>
                 {
@@ -245,7 +248,7 @@ namespace Mega
                     {
                         for (int z = 0; z < sP_ListEventsResults.Length; z++)
                         {
-                            if (comboBox1.Text == sP_ListEventsResults[z].EventName)
+                            if (event_name == sP_ListEventsResults[z].EventName)
                             {
                                 response = api.set_history_invoice(invoices[i], sP_ListEventsResults[z].EventNum, comments, textBox3.Text);
                                 if (response != null)
@@ -256,7 +259,9 @@ namespace Mega
                             }
                         }
                     }
-                    this.Invoke(new System.Action(() => richTextBox4.Text += string.Format("[{0}] Истории были добавлены в накладные!\n\n", textBox2.Text)));
+                    this.Invoke(new System.Action(() => richTextBox4.Text += string.Format("[{0}] Истории были добавлены в накладные! " +
+                                                                                            "Кол-во накладных: {1}, успешно: {2} \n\n",
+                                                                                            comments, invoices.Length, invoices.Length - j)));
                 });
             }
             catch (Exception ex)
