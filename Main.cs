@@ -207,6 +207,7 @@ namespace Mega
                 int count = 0;
 
                 richTextBox3.Text = "";
+                textBox1.Text = "";
 
                 await Task.Run(() =>
                 {
@@ -218,7 +219,7 @@ namespace Mega
                         string response = api.addInvoiceToManifest(invoices_task[i], manifest_task);
                         if (response != null)
                         {
-                            this.Invoke(new System.Action(() => richTextBox2.Text += j + ")\t" + response + "\n\n"));
+                            this.Invoke(new System.Action(() => richTextBox2.Text += (j + 1) + ")\t" + response + "\n\n"));
                             j++;
                             error_invoice.Add(invoices_task[i]);
                             continue;
@@ -228,8 +229,12 @@ namespace Mega
                     this.Invoke(new System.Action(() => richTextBox2.Text += string.Format("[M{0}] накладные были добавлены в манифест. " +
                                                                                             "Кол-во накладных: {1}, успешно: {2}, ошибок: {3}\n\n",
                                                                                             manifest_task, invoices_task.Length, invoices_task.Length - j, j)));
-                    for (int i = 0; i < error_invoice.Count; i++)
-                        this.Invoke(new System.Action(() => richTextBox3.Text += error_invoice[i] + "\n"));
+                    if(error_invoice.Count > 0)
+                    { 
+                        for (int i = 0; i < error_invoice.Count; i++)
+                            this.Invoke(new System.Action(() => richTextBox3.Text += error_invoice[i] + "\n"));
+                        this.Invoke(new System.Action(() => textBox1.Text = Convert.ToString(manifest)));
+                    }
                 });
             }
             catch (Exception ex)
@@ -267,7 +272,7 @@ namespace Mega
                                 response = api.set_history_invoice(invoices_task[i], sP_ListEventsResults[z].EventNum, comments_task, textBox3.Text);
                                 if (response != null)
                                 {
-                                    this.Invoke(new System.Action(() => richTextBox4.Text += j + ")\t" + response + "\n\n"));
+                                    this.Invoke(new System.Action(() => richTextBox4.Text += (j + 1) + ")\t" + response + "\n\n"));
                                     j++;
                                 }
                             }
