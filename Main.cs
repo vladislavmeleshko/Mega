@@ -203,7 +203,7 @@ namespace Mega
                 string[] invoices = richTextBox3.Text.Split();
                 
                 int manifest = Convert.ToInt32(textBox1.Text.Replace('M', ' ').Replace('М', ' '));
-                int j = 1;
+                int j = 0;
                 int count = 0;
 
                 richTextBox3.Text = "";
@@ -250,7 +250,7 @@ namespace Mega
                 string comments = textBox2.Text;
                 string event_name = comboBox1.Text;
                 
-                int j = 1;
+                int j = 0;
 
                 await Task.Run(() =>
                 {
