@@ -77,7 +77,6 @@ namespace Mega.classes
 
         public void get_test(string WBNumber, int AgentCode, int AgentCode2, int CityCode)
         {
-            auth();
             SP_Invoice_HistoryResult[] sP_Invoice_HistoryResult = mekus.me_OneInvoiceHistory(login, WBNumber);
             SP_Invoice_GenerResult[] sP_Invoice_GenerResults = mekus.me_oneInvoice(login, WBNumber);
             for (int i = 0; i < sP_Invoice_HistoryResult.Length; i++)
