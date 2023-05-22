@@ -254,7 +254,8 @@ namespace Mega
                 string response = null;
                 string comments = textBox2.Text;
                 string event_name = comboBox1.Text;
-                
+                string time_event = textBox3.Text;
+
                 int j = 0;
 
                 await Task.Run(() =>
@@ -262,6 +263,7 @@ namespace Mega
                     string[] invoices_task = invoices;
                     string event_name_task = event_name;
                     string comments_task = comments;
+                    string time_event_task = time_event;
 
                     for (int i = 0; i < invoices_task.Length; i++)
                     {
@@ -269,7 +271,7 @@ namespace Mega
                         {
                             if (event_name_task == sP_ListEventsResults[z].EventName)
                             {
-                                response = api.set_history_invoice(invoices_task[i], sP_ListEventsResults[z].EventNum, comments_task, textBox3.Text);
+                                response = api.set_history_invoice(invoices_task[i], sP_ListEventsResults[z].EventNum, comments_task, time_event_task);
                                 if (response != null)
                                 {
                                     this.Invoke(new System.Action(() => richTextBox4.Text += (j + 1) + ")\t" + response + "\n\n"));
