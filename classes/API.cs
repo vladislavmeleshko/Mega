@@ -257,7 +257,6 @@ namespace Mega.classes
         {
             WBInManifest[] wBInManifests = null;
             Report report = new Report();
-            auth();
             try
             {
                 wBInManifests = mekus.me_allInvocesManifest_new(login, Convert.ToInt32(manifest.Replace("М", "")));
