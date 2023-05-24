@@ -81,6 +81,7 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.button9 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.richTextBox7 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -591,6 +592,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.richTextBox7);
             this.tabPage6.Controls.Add(this.button9);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
@@ -613,6 +615,14 @@
             // 
             this.openFileDialog1.InitialDirectory = "DataDirectory";
             this.openFileDialog1.RestoreDirectory = true;
+            // 
+            // richTextBox7
+            // 
+            this.richTextBox7.Location = new System.Drawing.Point(176, 5);
+            this.richTextBox7.Name = "richTextBox7";
+            this.richTextBox7.Size = new System.Drawing.Size(1258, 606);
+            this.richTextBox7.TabIndex = 1;
+            this.richTextBox7.Text = "";
             // 
             // Main
             // 
@@ -705,6 +715,7 @@
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.RichTextBox richTextBox7;
     }
 }
 
