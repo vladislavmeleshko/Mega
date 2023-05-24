@@ -396,13 +396,16 @@ namespace Mega.classes
         {
             try
             {
-                liga.AgentsWebServiceSoapClient agentsWebServiceSoapClient = new liga.AgentsWebServiceSoapClient();                
+                liga.AgentsWebServiceSoapClient agentsWebServiceSoapClient = new liga.AgentsWebServiceSoapClient();
+                agentsWebServiceSoapClient.ClientCredentials.UserName.UserName = "M638391";
+                agentsWebServiceSoapClient.ClientCredentials.UserName.Password = "98892Mcd6";
+                agentsWebServiceSoapClient.Open();
                 agentsWebServiceSoapClient.Delivered(Convert.ToInt32(delivery.WBNumber), Convert.ToDateTime(delivery.DeliveryDate + " " + delivery.DeliveryTime), delivery.Submitter, "", 0, false);
                 return 1;
             }
             catch (Exception)
             {
-                return 0;   
+                return 0;
             }
         }
     }
