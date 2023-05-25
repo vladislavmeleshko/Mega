@@ -400,12 +400,34 @@ namespace Mega.classes
                 agentsWebServiceSoapClient.ClientCredentials.UserName.UserName = "M638391";
                 agentsWebServiceSoapClient.ClientCredentials.UserName.Password = "98892Mcd6";
                 agentsWebServiceSoapClient.Open();
-                agentsWebServiceSoapClient.Delivered(Convert.ToInt32(delivery.WBNumber), Convert.ToDateTime(delivery.DeliveryDate + " " + delivery.DeliveryTime), delivery.Submitter, "", 0, false);
-                return 1;
+                var check = agentsWebServiceSoapClient.WBinfo(Convert.ToInt32(delivery.WBNumber));
+                if (check.Close == null)
+                {
+                    agentsWebServiceSoapClient.Delivered(Convert.ToInt32(delivery.WBNumber), Convert.ToDateTime(delivery.DeliveryDate + " " + delivery.DeliveryTime), delivery.Submitter, "", 0, false);
+                    return 1;
+                }
+                else return 1;
             }
             catch (Exception)
             {
                 return 0;
+            }
+        }
+
+        public string DeletePackageLiga(string PackageID)
+        {
+            liga.AgentsWebServiceSoapClient agentsWebServiceSoapClient = new liga.AgentsWebServiceSoapClient();
+            try
+            {
+                agentsWebServiceSoapClient.ClientCredentials.UserName.UserName = "M638391";
+                agentsWebServiceSoapClient.ClientCredentials.UserName.Password = "98892Mcd6";
+                agentsWebServiceSoapClient.Open();
+                agentsWebServiceSoapClient.DeletePackage(PackageID);
+                return "1";
+            }
+            catch(Exception)
+            {
+                return null;
             }
         }
     }

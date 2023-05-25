@@ -411,11 +411,28 @@ namespace Mega
                                 richTextBox7.Text += string.Format("Не удалось выгрузить накладную {0}\n\n", mEScheme.DeliveryUpdate[i].WBNumber);
                             }
                         }
-                        richTextBox7.Text += "ДД были выгружены в LIGA!";
+                        richTextBox7.Text += "ДД были выгружены в LIGA!\n\n";
                     }
                 }
             }
             catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (api.DeletePackageLiga(textBox4.Text) == "1")
+                {
+                    richTextBox7.Text += string.Format("Место {0} было успешно удалено!\n\n", textBox4.Text);
+                    textBox4.Text = "";
+                }
+                else richTextBox7.Text += string.Format("Место {0} удалить не удалось!\n\n", textBox4.Text);
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

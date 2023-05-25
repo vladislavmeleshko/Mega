@@ -79,9 +79,11 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.richTextBox7 = new System.Windows.Forms.RichTextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.richTextBox7 = new System.Windows.Forms.RichTextBox();
+            this.button10 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -592,6 +594,8 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.textBox4);
+            this.tabPage6.Controls.Add(this.button10);
             this.tabPage6.Controls.Add(this.richTextBox7);
             this.tabPage6.Controls.Add(this.button9);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
@@ -600,6 +604,14 @@
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Выгрузка ДД в LIGA";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox7
+            // 
+            this.richTextBox7.Location = new System.Drawing.Point(176, 5);
+            this.richTextBox7.Name = "richTextBox7";
+            this.richTextBox7.Size = new System.Drawing.Size(1258, 606);
+            this.richTextBox7.TabIndex = 1;
+            this.richTextBox7.Text = "";
             // 
             // button9
             // 
@@ -616,13 +628,22 @@
             this.openFileDialog1.InitialDirectory = "DataDirectory";
             this.openFileDialog1.RestoreDirectory = true;
             // 
-            // richTextBox7
+            // button10
             // 
-            this.richTextBox7.Location = new System.Drawing.Point(176, 5);
-            this.richTextBox7.Name = "richTextBox7";
-            this.richTextBox7.Size = new System.Drawing.Size(1258, 606);
-            this.richTextBox7.TabIndex = 1;
-            this.richTextBox7.Text = "";
+            this.button10.Location = new System.Drawing.Point(3, 32);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(167, 23);
+            this.button10.TabIndex = 2;
+            this.button10.Text = "Удалить место";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(3, 61);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(167, 20);
+            this.textBox4.TabIndex = 3;
             // 
             // Main
             // 
@@ -656,6 +677,7 @@
             this.groupBox10.ResumeLayout(false);
             this.groupBox11.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -716,6 +738,8 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.RichTextBox richTextBox7;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button10;
     }
 }
 
