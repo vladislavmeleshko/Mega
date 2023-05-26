@@ -406,7 +406,7 @@ namespace Mega.classes
                     agentsWebServiceSoapClient.Delivered(Convert.ToInt32(delivery.WBNumber), Convert.ToDateTime(delivery.DeliveryDate + " " + delivery.DeliveryTime), delivery.Submitter, "", 0, false);
                     return 1;
                 }
-                else return 1;
+                else return 2;
             }
             catch (Exception)
             {

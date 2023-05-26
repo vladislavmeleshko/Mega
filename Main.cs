@@ -407,10 +407,10 @@ namespace Mega
                         for(int i = 0; i < mEScheme.DeliveryUpdate.Length; i++)
                         {
                             if (api.inputdeliveryforliga(mEScheme.DeliveryUpdate[i]) == 0)
-                            {
                                 richTextBox7.Text += string.Format("Не удалось выгрузить накладную {0}\n\n", mEScheme.DeliveryUpdate[i].WBNumber);
-                            }
-                            else richTextBox7.Text += string.Format("Накладная {0} была успешно выгружена!\n\n", mEScheme.DeliveryUpdate[i].WBNumber);
+                            else if (api.inputdeliveryforliga(mEScheme.DeliveryUpdate[i]) == 1)
+                                richTextBox7.Text += string.Format("Накладная {0} была успешно выгружена!\n\n", mEScheme.DeliveryUpdate[i].WBNumber);
+                            else continue;
                         }
                         richTextBox7.Text += "ДД были выгружены в LIGA!\n\n";
                     }
