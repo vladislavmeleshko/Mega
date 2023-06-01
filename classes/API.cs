@@ -114,6 +114,21 @@ namespace Mega.classes
                     submiter = sP_Invoice_GenerResults[0].Submitter;
                     return 1;
                 }
+                if(sP_Invoice_GenerResults[0].ResCode == 3)
+                {
+                    liga.AgentsWebServiceSoapClient agentsWebServiceSoapClient = new liga.AgentsWebServiceSoapClient();
+                    agentsWebServiceSoapClient.ClientCredentials.UserName.UserName = "M638391";
+                    agentsWebServiceSoapClient.ClientCredentials.UserName.Password = "98892Mcd6";
+                    agentsWebServiceSoapClient.Open();
+                    var check = agentsWebServiceSoapClient.WBinfo(Convert.ToInt32(number));
+                    if(check.Close != null)
+                    {
+                        WBCloseDate = check.Close.Value.Date.ToString();
+                        WBCloseTime = check.Close.Value.TimeOfDay.ToString();
+                        submiter = check.Submitter;
+                        return 1;
+                    }
+                }
                 return 0;
             }
             catch(Exception)
