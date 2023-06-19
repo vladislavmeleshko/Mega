@@ -79,11 +79,13 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button6 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button10 = new System.Windows.Forms.Button();
             this.richTextBox7 = new System.Windows.Forms.RichTextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button10 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button11 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -103,6 +105,7 @@
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -113,6 +116,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -605,6 +609,23 @@
             this.tabPage6.Text = "Выгрузка ДД в LIGA";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(3, 61);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(167, 20);
+            this.textBox4.TabIndex = 3;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(3, 32);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(167, 23);
+            this.button10.TabIndex = 2;
+            this.button10.Text = "Удалить место";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // richTextBox7
             // 
             this.richTextBox7.Location = new System.Drawing.Point(176, 5);
@@ -628,22 +649,25 @@
             this.openFileDialog1.InitialDirectory = "DataDirectory";
             this.openFileDialog1.RestoreDirectory = true;
             // 
-            // button10
+            // tabPage7
             // 
-            this.button10.Location = new System.Drawing.Point(3, 32);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(167, 23);
-            this.button10.TabIndex = 2;
-            this.button10.Text = "Удалить место";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.tabPage7.Controls.Add(this.button11);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(1437, 614);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Для тестов";
+            this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // button11
             // 
-            this.textBox4.Location = new System.Drawing.Point(3, 61);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(167, 20);
-            this.textBox4.TabIndex = 3;
+            this.button11.Location = new System.Drawing.Point(3, 3);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 0;
+            this.button11.Text = "Тест";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // Main
             // 
@@ -678,6 +702,7 @@
             this.groupBox11.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -740,6 +765,8 @@
         private System.Windows.Forms.RichTextBox richTextBox7;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button button11;
     }
 }
 

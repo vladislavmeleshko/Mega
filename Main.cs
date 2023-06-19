@@ -438,5 +438,17 @@ namespace Mega
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = api.createManifest();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
