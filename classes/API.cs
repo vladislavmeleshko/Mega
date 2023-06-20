@@ -101,21 +101,6 @@ namespace Mega.classes
             }
         }
 
-        public SP_Manifest_CreateResult createManifest()
-        {
-            SP_Manifest_CreateResult[] result = null;
-            try
-            {
-                DateTime now = DateTime.Today.Date;
-                result = mekus.me_ManifestCreate(login, now, "17:00:00", 129, 17, 17, 1, 2.30, null, null, null, now, "18:00:00");
-                return result[0];
-            }
-            catch
-            {
-                return result[0];
-            }
-        }
-
         public int get_info_for_delivery(string number)
         {
             try

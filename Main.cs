@@ -24,6 +24,8 @@ namespace Mega
             for (int i = 0; i < sP_ListEventsResults.Length; i++)
                 comboBox1.Items.Add(sP_ListEventsResults[i].EventName);
             button6.Enabled = true;
+            textBox3.Text = DateTime.Now.ToString("HH:mm");
+            textBox5.Text = "18:00";
         }
 
         private async void button2_Click(object sender, EventArgs e)
@@ -434,18 +436,6 @@ namespace Mega
                 else richTextBox7.Text += string.Format("Место {0} удалить не удалось!\n\n", textBox4.Text);
             }
             catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var result = api.createManifest();
-            }
-            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
