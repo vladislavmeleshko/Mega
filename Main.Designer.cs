@@ -59,8 +59,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -83,9 +83,9 @@
             this.button10 = new System.Windows.Forms.Button();
             this.richTextBox7 = new System.Windows.Forms.RichTextBox();
             this.button9 = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.button11 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -418,22 +418,24 @@
             this.tabPage4.Text = "Добавление истории в накладные Меги";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "hh:mm";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(7, 19);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(187, 20);
+            this.dateTimePicker2.TabIndex = 10;
+            // 
             // groupBox9
             // 
-            this.groupBox9.Controls.Add(this.textBox3);
+            this.groupBox9.Controls.Add(this.dateTimePicker2);
             this.groupBox9.Location = new System.Drawing.Point(3, 115);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(200, 50);
             this.groupBox9.TabIndex = 9;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Время";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(7, 20);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(187, 20);
-            this.textBox3.TabIndex = 0;
             // 
             // groupBox8
             // 
@@ -644,11 +646,6 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.InitialDirectory = "DataDirectory";
-            this.openFileDialog1.RestoreDirectory = true;
-            // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.button11);
@@ -668,6 +665,11 @@
             this.button11.Text = "Тест";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.InitialDirectory = "DataDirectory";
+            this.openFileDialog1.RestoreDirectory = true;
             // 
             // Main
             // 
@@ -690,7 +692,6 @@
             this.groupBox2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -737,7 +738,6 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox11;
@@ -767,6 +767,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }
 

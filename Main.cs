@@ -254,7 +254,7 @@ namespace Mega
                 string response = null;
                 string comments = textBox2.Text;
                 string event_name = comboBox1.Text;
-                string time_event = textBox3.Text;
+                string time_event = dateTimePicker2.Text;
 
                 int j = 0;
 
