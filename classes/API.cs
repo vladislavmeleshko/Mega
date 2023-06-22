@@ -318,7 +318,13 @@ namespace Mega.classes
                     { 
                         invoice.WhoWillPay = "3-я сторона";
                         if (wBInManifests[i].PayerCode == 102220)
+                        { 
                             invoice.FreightRUR = Convert.ToString(wBInManifests[i].Freight_RUR).Replace(".", ",");
+                            if(wBInManifests[i].PaymentType == 1)
+                                invoice.PaymentType = "Нал";
+                            else if(wBInManifests[i].PaymentType == 2)
+                                invoice.PaymentType = "Б/нал";
+                        }
                     }
                     if (wBInManifests[i].PaymentType == 1 && wBInManifests[i].WhoWillPay != 3)
                         invoice.PaymentType = "Нал";
