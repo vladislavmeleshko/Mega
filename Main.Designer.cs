@@ -84,14 +84,14 @@
             this.richTextBox7 = new System.Windows.Forms.RichTextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.button11 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.richTextBox8 = new System.Windows.Forms.RichTextBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.button11 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -112,9 +112,9 @@
             this.groupBox11.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage8.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.groupBox13.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -144,7 +144,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1437, 614);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Проверка импорта / экспорта";
+            this.tabPage1.Text = "Проверка импорта / экспорта (MEGA)";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // button8
@@ -185,7 +185,7 @@
             this.Column10,
             this.Column9,
             this.Column11});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 35);
+            this.dataGridView1.Location = new System.Drawing.Point(-24, 27);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(1425, 573);
@@ -305,7 +305,7 @@
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Size = new System.Drawing.Size(1437, 614);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Импорт ДД";
+            this.tabPage2.Text = "Импорт ДД (MEGA и LIGA)";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -346,7 +346,7 @@
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1437, 614);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Экспорт накладных";
+            this.tabPage3.Text = "Экспорт накладных (MEGA)";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // groupBox4
@@ -424,7 +424,7 @@
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1437, 614);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Экспорт историй";
+            this.tabPage4.Text = "Экспорт историй (MEGA)";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // groupBox9
@@ -439,7 +439,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.CustomFormat = "hh:mm";
+            this.dateTimePicker2.CustomFormat = "HH:mm";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(7, 19);
             this.dateTimePicker2.Name = "dateTimePicker2";
@@ -538,7 +538,7 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1437, 614);
             this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Импорт накладных";
+            this.tabPage5.Text = "Импорт накладных (MEGA)";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // button7
@@ -665,58 +665,8 @@
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Size = new System.Drawing.Size(1437, 614);
             this.tabPage8.TabIndex = 6;
-            this.tabPage8.Text = "Экспорт манифестов в MEGA";
+            this.tabPage8.Text = "Экспорт манифестов (MEGA)";
             this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.comboBox2);
-            this.groupBox12.Location = new System.Drawing.Point(3, 3);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(250, 50);
-            this.groupBox12.TabIndex = 2;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Агент";
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(3, 115);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(250, 23);
-            this.button11.TabIndex = 1;
-            this.button11.Text = "Создать манифест";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(6, 19);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(238, 21);
-            this.comboBox2.TabIndex = 0;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.InitialDirectory = "DataDirectory";
-            this.openFileDialog1.RestoreDirectory = true;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.textBox3);
-            this.groupBox13.Location = new System.Drawing.Point(3, 59);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(250, 50);
-            this.groupBox13.TabIndex = 3;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Номер накладной";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(6, 19);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(238, 20);
-            this.textBox3.TabIndex = 4;
             // 
             // groupBox14
             // 
@@ -735,6 +685,56 @@
             this.richTextBox8.Size = new System.Drawing.Size(1163, 583);
             this.richTextBox8.TabIndex = 0;
             this.richTextBox8.Text = "";
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.textBox3);
+            this.groupBox13.Location = new System.Drawing.Point(3, 59);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(250, 50);
+            this.groupBox13.TabIndex = 3;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Номер накладной";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(6, 19);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(238, 20);
+            this.textBox3.TabIndex = 4;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.comboBox2);
+            this.groupBox12.Location = new System.Drawing.Point(3, 3);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(250, 50);
+            this.groupBox12.TabIndex = 2;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Агент";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(6, 19);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(238, 21);
+            this.comboBox2.TabIndex = 0;
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(3, 115);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(250, 23);
+            this.button11.TabIndex = 1;
+            this.button11.Text = "Создать манифест";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.InitialDirectory = "DataDirectory";
+            this.openFileDialog1.RestoreDirectory = true;
             // 
             // Main
             // 
@@ -769,10 +769,10 @@
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
             this.tabPage8.ResumeLayout(false);
-            this.groupBox12.ResumeLayout(false);
+            this.groupBox14.ResumeLayout(false);
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
-            this.groupBox14.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
