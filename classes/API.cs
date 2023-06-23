@@ -342,6 +342,16 @@ namespace Mega.classes
             }
         }
 
+        public SP_ListCitiesResult[] get_list_cities()
+        {
+            return mekus.me_allCitys(login);
+        }
+
+        public SP_Manifest_CreateResult[] create_manifest(string number_invoice, int city)
+        {
+            return mekus.me_ManifestCreate(login, DateTime.Today, "17:00", city, 17, 17, null, null, null, number_invoice, null, DateTime.Today, "18:00");
+        }
+
         public Report get_invoices_out_manifest(string[] number, int i)
         {
             SP_Invoice_GenerResult[] sP_Invoice_GenerResults = null;

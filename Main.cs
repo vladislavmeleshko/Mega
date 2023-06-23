@@ -15,17 +15,19 @@ namespace Mega
     public partial class Main : Form
     {
         API api = null;
-        megaAPI.SP_ListEventsResult[] sP_ListEventsResults;
+        SP_ListEventsResult[] sP_ListEventsResults;
+        SP_ListCitiesResult[] sP_ListCities;
         public Main()
         {
             InitializeComponent();
             api = new API();
             sP_ListEventsResults = api.get_history();
+            sP_ListCities = api.get_list_cities();
             for (int i = 0; i < sP_ListEventsResults.Length; i++)
                 comboBox1.Items.Add(sP_ListEventsResults[i].EventName);
+            for (int i = 0; i < sP_ListCities.Length; i++)
+                comboBox2.Items.Add(sP_ListCities[i].cityName);
             button6.Enabled = true;
-            textBox3.Text = DateTime.Now.ToString("HH:mm");
-            textBox5.Text = "18:00";
         }
 
         private async void button2_Click(object sender, EventArgs e)
@@ -438,6 +440,18 @@ namespace Mega
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < sP_ListCities.Length; i++)
+            {
+                if (sP_ListCities[i].cityName == comboBox2.Text)
+                {
+                    SP_Manifest_CreateResult[] create = api.create_manifest(textBox3.Text, sP_ListCities[i].CityCode);
+                    richTextBox8.Text += $"Манифест М{create[0].ManifestKod} на город {sP_ListCities[i].cityName} успешно создан!\n\n";
+                }
             }
         }
     }

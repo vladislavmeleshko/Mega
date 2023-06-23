@@ -83,30 +83,15 @@
             this.button10 = new System.Windows.Forms.Button();
             this.richTextBox7 = new System.Windows.Forms.RichTextBox();
             this.button9 = new System.Windows.Forms.Button();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.groupBox18 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.groupBox17 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
-            this.groupBox16 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.richTextBox8 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -126,14 +111,9 @@
             this.groupBox10.SuspendLayout();
             this.groupBox11.SuspendLayout();
             this.tabPage6.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage8.SuspendLayout();
             this.groupBox12.SuspendLayout();
-            this.groupBox18.SuspendLayout();
-            this.groupBox17.SuspendLayout();
-            this.groupBox16.SuspendLayout();
-            this.groupBox15.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.groupBox14.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -145,7 +125,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
-            this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -675,224 +655,86 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // tabPage7
+            // tabPage8
             // 
-            this.tabPage7.Controls.Add(this.groupBox13);
-            this.tabPage7.Controls.Add(this.groupBox12);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1437, 614);
-            this.tabPage7.TabIndex = 6;
-            this.tabPage7.Text = "CMR";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.dataGridView2);
-            this.groupBox13.Location = new System.Drawing.Point(309, 3);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(1125, 608);
-            this.groupBox13.TabIndex = 2;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Список CMR";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column12,
-            this.Column13,
-            this.Column14,
-            this.Column15,
-            this.Column16,
-            this.Column17,
-            this.Column18});
-            this.dataGridView2.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(1113, 583);
-            this.dataGridView2.TabIndex = 0;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Дата";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // Column13
-            // 
-            this.Column13.HeaderText = "Номер";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            // 
-            // Column14
-            // 
-            this.Column14.HeaderText = "Маршрут";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            // 
-            // Column15
-            // 
-            this.Column15.HeaderText = "Получатель";
-            this.Column15.Name = "Column15";
-            this.Column15.ReadOnly = true;
-            // 
-            // Column16
-            // 
-            this.Column16.HeaderText = "Наличие";
-            this.Column16.Name = "Column16";
-            this.Column16.ReadOnly = true;
-            // 
-            // Column17
-            // 
-            this.Column17.HeaderText = "Примечание";
-            this.Column17.Name = "Column17";
-            this.Column17.ReadOnly = true;
-            // 
-            // Column18
-            // 
-            this.Column18.HeaderText = "Манифест";
-            this.Column18.Name = "Column18";
-            this.Column18.ReadOnly = true;
+            this.tabPage8.Controls.Add(this.groupBox14);
+            this.tabPage8.Controls.Add(this.groupBox13);
+            this.tabPage8.Controls.Add(this.groupBox12);
+            this.tabPage8.Controls.Add(this.button11);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(1437, 614);
+            this.tabPage8.TabIndex = 6;
+            this.tabPage8.Text = "Экспорт манифестов в MEGA";
+            this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // groupBox12
             // 
-            this.groupBox12.Controls.Add(this.groupBox18);
-            this.groupBox12.Controls.Add(this.groupBox17);
-            this.groupBox12.Controls.Add(this.button12);
-            this.groupBox12.Controls.Add(this.button11);
-            this.groupBox12.Controls.Add(this.groupBox16);
-            this.groupBox12.Controls.Add(this.groupBox15);
-            this.groupBox12.Controls.Add(this.groupBox14);
+            this.groupBox12.Controls.Add(this.comboBox2);
             this.groupBox12.Location = new System.Drawing.Point(3, 3);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(300, 608);
-            this.groupBox12.TabIndex = 1;
+            this.groupBox12.Size = new System.Drawing.Size(250, 50);
+            this.groupBox12.TabIndex = 2;
             this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Методы";
-            // 
-            // groupBox18
-            // 
-            this.groupBox18.Controls.Add(this.textBox5);
-            this.groupBox18.Location = new System.Drawing.Point(6, 329);
-            this.groupBox18.Name = "groupBox18";
-            this.groupBox18.Size = new System.Drawing.Size(288, 50);
-            this.groupBox18.TabIndex = 6;
-            this.groupBox18.TabStop = false;
-            this.groupBox18.Text = "Время отправления";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(7, 19);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(275, 20);
-            this.textBox5.TabIndex = 1;
-            // 
-            // groupBox17
-            // 
-            this.groupBox17.Controls.Add(this.textBox3);
-            this.groupBox17.Location = new System.Drawing.Point(6, 273);
-            this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(288, 50);
-            this.groupBox17.TabIndex = 5;
-            this.groupBox17.TabStop = false;
-            this.groupBox17.Text = "Время создания манифеста";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(7, 20);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(275, 20);
-            this.textBox3.TabIndex = 0;
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(6, 414);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(288, 23);
-            this.button12.TabIndex = 4;
-            this.button12.Text = "Удалить CMR";
-            this.button12.UseVisualStyleBackColor = true;
+            this.groupBox12.Text = "Агент";
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(6, 385);
+            this.button11.Location = new System.Drawing.Point(3, 115);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(288, 23);
-            this.button11.TabIndex = 3;
-            this.button11.Text = "Создать CMR и манифесты";
+            this.button11.Size = new System.Drawing.Size(250, 23);
+            this.button11.TabIndex = 1;
+            this.button11.Text = "Создать манифест";
             this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
-            // groupBox16
+            // comboBox2
             // 
-            this.groupBox16.Controls.Add(this.dateTimePicker3);
-            this.groupBox16.Location = new System.Drawing.Point(6, 19);
-            this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(288, 50);
-            this.groupBox16.TabIndex = 2;
-            this.groupBox16.TabStop = false;
-            this.groupBox16.Text = "Дата";
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(7, 20);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(275, 20);
-            this.dateTimePicker3.TabIndex = 0;
-            // 
-            // groupBox15
-            // 
-            this.groupBox15.Controls.Add(this.comboBox3);
-            this.groupBox15.Location = new System.Drawing.Point(6, 75);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(288, 50);
-            this.groupBox15.TabIndex = 1;
-            this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "Маршрут";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "Минск - Смоленск",
-            "Минск - Москва"});
-            this.comboBox3.Location = new System.Drawing.Point(6, 19);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(276, 21);
-            this.comboBox3.TabIndex = 0;
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.Controls.Add(this.checkedListBox1);
-            this.groupBox14.Location = new System.Drawing.Point(6, 131);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(288, 136);
-            this.groupBox14.TabIndex = 0;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Получатели";
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Мэйджор Экспресс ООО, г. Москва",
-            "Эпикос ООО, г. Смоленск ",
-            "Диком-регион ООО, г. Брянск",
-            "Мэйджор Экспресс ООО, г. Москва - СГ",
-            "Эпикос ООО, г. Смоленск - СГ",
-            "Диком-регион ООО, г. Брянск - СГ",
-            "Эпикос ООО, г. Смоленск - Прямая"});
-            this.checkedListBox1.Location = new System.Drawing.Point(7, 20);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(275, 109);
-            this.checkedListBox1.TabIndex = 0;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(6, 19);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(238, 21);
+            this.comboBox2.TabIndex = 0;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.InitialDirectory = "DataDirectory";
             this.openFileDialog1.RestoreDirectory = true;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.textBox3);
+            this.groupBox13.Location = new System.Drawing.Point(3, 59);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(250, 50);
+            this.groupBox13.TabIndex = 3;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Номер накладной";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(6, 19);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(238, 20);
+            this.textBox3.TabIndex = 4;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.richTextBox8);
+            this.groupBox14.Location = new System.Drawing.Point(259, 3);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(1175, 608);
+            this.groupBox14.TabIndex = 4;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Ответ от MEGA";
+            // 
+            // richTextBox8
+            // 
+            this.richTextBox8.Location = new System.Drawing.Point(6, 19);
+            this.richTextBox8.Name = "richTextBox8";
+            this.richTextBox8.Size = new System.Drawing.Size(1163, 583);
+            this.richTextBox8.TabIndex = 0;
+            this.richTextBox8.Text = "";
             // 
             // Main
             // 
@@ -926,16 +768,10 @@
             this.groupBox11.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.tabPage7.ResumeLayout(false);
-            this.groupBox13.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage8.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
-            this.groupBox18.ResumeLayout(false);
-            this.groupBox18.PerformLayout();
-            this.groupBox17.ResumeLayout(false);
-            this.groupBox17.PerformLayout();
-            this.groupBox16.ResumeLayout(false);
-            this.groupBox15.ResumeLayout(false);
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -999,29 +835,14 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.GroupBox groupBox13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
+        private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.GroupBox groupBox14;
-        private System.Windows.Forms.GroupBox groupBox16;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.GroupBox groupBox15;
-        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.GroupBox groupBox17;
-        private System.Windows.Forms.GroupBox groupBox18;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.GroupBox groupBox13;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.RichTextBox richTextBox8;
     }
 }
 
