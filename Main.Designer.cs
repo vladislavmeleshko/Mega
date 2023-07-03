@@ -185,7 +185,7 @@
             this.Column10,
             this.Column9,
             this.Column11});
-            this.dataGridView1.Location = new System.Drawing.Point(-24, 27);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 35);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(1425, 573);
