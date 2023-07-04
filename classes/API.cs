@@ -62,6 +62,14 @@ namespace Mega.classes
             login = mekus.me_Login("webminsk", "XvR2qTM970a04d43", out mlp);
         }
 
+        public SP_Invoice_GenerResult[] get_sP_Invoice_GenerResults_spec_delivery(string number)
+        {
+            SP_Invoice_GenerResult[] invoice = mekus.me_oneInvoice(login, number);
+            if (invoice[0].SpecialDeliveryConditions.Length < 1)
+                return null;
+            else return invoice;
+        }
+
         public SP_ListWayBillsResult[] getAllInvoces(int type_invoice)
         {
             try

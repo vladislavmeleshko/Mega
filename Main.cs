@@ -454,5 +454,26 @@ namespace Mega
                 }
             }
         }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            string[] invoices = richTextBox9.Text.Split('\n');
+            Task.Run(() =>
+            {
+                for (int i = 0; i < invoices.Length; i++)
+                {
+                    var invoice = api.get_sP_Invoice_GenerResults_spec_delivery(invoices[i]);
+                    if (invoice == null)
+                    {
+                        Invoke(new System.Action(() => label2.Text = $"Обработано накладных: {i + 1} из {invoices.Length}"));
+                        continue;
+                    }
+                    else
+                        for (int j = 0; j < invoice[0].SpecialDeliveryConditions.Length; j++)
+                            Invoke(new System.Action(() => richTextBox10.Text += $"Накладная {invoice[0].WBNumber} имеет спец. условия доставки.\n"));
+                    Invoke(new System.Action(() => label2.Text = $"Обработано накладных: {i + 1} из {invoices.Length}"));
+                }
+            });
+        }
     }
 }
