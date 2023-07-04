@@ -20,6 +20,7 @@ namespace Mega.classes
 
         public string dateofshipment { get; set; }
         public string dateofreceipt { get; set; }
+        public string otpravitel { get; set; }
         public string dateofdaydeveliery { get; set; }
         public string namehistory { get; set; }
         public string submiter { get; set; }
@@ -41,6 +42,7 @@ namespace Mega.classes
             submiter = "";
             WBCloseDate = "";
             WBCloseTime = "";
+            otpravitel = "";
         }
 
         public API()
@@ -81,6 +83,7 @@ namespace Mega.classes
             SP_Invoice_GenerResult[] sP_Invoice_GenerResults = mekus.me_oneInvoice(login, WBNumber);
             for (int i = 0; i < sP_Invoice_HistoryResult.Length; i++)
             {
+                otpravitel = sP_Invoice_GenerResults[0].ShipperCompany;
                 if (sP_Invoice_HistoryResult[i].EventNum == 23 && sP_Invoice_HistoryResult[i].AgentCode == AgentCode)
                 {
                     dateofshipment = sP_Invoice_HistoryResult[i].EventDate + " " + sP_Invoice_HistoryResult[i].EventTime;
