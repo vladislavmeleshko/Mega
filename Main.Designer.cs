@@ -99,7 +99,6 @@
             this.button12 = new System.Windows.Forms.Button();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.richTextBox9 = new System.Windows.Forms.RichTextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -818,11 +817,6 @@
             this.richTextBox9.TabIndex = 0;
             this.richTextBox9.Text = "";
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.InitialDirectory = "DataDirectory";
-            this.openFileDialog1.RestoreDirectory = true;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -910,7 +904,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.RichTextBox richTextBox7;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button10;
