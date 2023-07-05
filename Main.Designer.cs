@@ -92,14 +92,14 @@
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button11 = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.richTextBox9 = new System.Windows.Forms.RichTextBox();
-            this.button12 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
             this.richTextBox10 = new System.Windows.Forms.RichTextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.button12 = new System.Windows.Forms.Button();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.richTextBox9 = new System.Windows.Forms.RichTextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -124,8 +124,8 @@
             this.groupBox13.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.tabPage7.SuspendLayout();
-            this.groupBox15.SuspendLayout();
             this.groupBox16.SuspendLayout();
+            this.groupBox15.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -198,6 +198,7 @@
             this.Column10,
             this.Column9,
             this.Column11});
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.dataGridView1.Location = new System.Drawing.Point(6, 35);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -750,11 +751,6 @@
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.InitialDirectory = "DataDirectory";
-            this.openFileDialog1.RestoreDirectory = true;
-            // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.label2);
@@ -768,33 +764,13 @@
             this.tabPage7.Text = "Спец. условия";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
-            // groupBox15
+            // label2
             // 
-            this.groupBox15.Controls.Add(this.richTextBox9);
-            this.groupBox15.Location = new System.Drawing.Point(3, 3);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(193, 377);
-            this.groupBox15.TabIndex = 6;
-            this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "Список накладных";
-            // 
-            // richTextBox9
-            // 
-            this.richTextBox9.Location = new System.Drawing.Point(7, 20);
-            this.richTextBox9.Name = "richTextBox9";
-            this.richTextBox9.Size = new System.Drawing.Size(180, 351);
-            this.richTextBox9.TabIndex = 0;
-            this.richTextBox9.Text = "";
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(3, 386);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(193, 23);
-            this.button12.TabIndex = 7;
-            this.button12.Text = "Выполнить";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 412);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 9;
             // 
             // groupBox16
             // 
@@ -814,13 +790,38 @@
             this.richTextBox10.TabIndex = 0;
             this.richTextBox10.Text = "";
             // 
-            // label2
+            // button12
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 412);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 9;
+            this.button12.Location = new System.Drawing.Point(3, 386);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(193, 23);
+            this.button12.TabIndex = 7;
+            this.button12.Text = "Выполнить";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.richTextBox9);
+            this.groupBox15.Location = new System.Drawing.Point(3, 3);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(193, 377);
+            this.groupBox15.TabIndex = 6;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Список накладных";
+            // 
+            // richTextBox9
+            // 
+            this.richTextBox9.Location = new System.Drawing.Point(7, 20);
+            this.richTextBox9.Name = "richTextBox9";
+            this.richTextBox9.Size = new System.Drawing.Size(180, 351);
+            this.richTextBox9.TabIndex = 0;
+            this.richTextBox9.Text = "";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.InitialDirectory = "DataDirectory";
+            this.openFileDialog1.RestoreDirectory = true;
             // 
             // Main
             // 
@@ -861,8 +862,8 @@
             this.groupBox12.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
-            this.groupBox15.ResumeLayout(false);
             this.groupBox16.ResumeLayout(false);
+            this.groupBox15.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

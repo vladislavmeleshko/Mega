@@ -76,9 +76,6 @@ namespace Mega
                             ));
                         }
                     }
-
-                    MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 catch (Exception ex)
                 {
@@ -132,8 +129,6 @@ namespace Mega
                             ));
                         }
                     }
-                    MessageBox.Show("Проверка завершена!", "Проверка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 catch (Exception ex)
                 {
@@ -372,14 +367,14 @@ namespace Mega
                             Invoke(new System.Action(() => dataGridView1.Rows.RemoveAt(i)));
                         else
                         {
-                            if(dataGridView1.Rows[i].Cells[6].Value.ToString() != null)
+                            if(dataGridView1.Rows[i].Cells[5].Value.ToString() != null)
                             {
                                 sP_Invoice_HistoryResult = api.mekus.me_OneInvoiceHistory(api.login, dataGridView1.Rows[i].Cells[0].Value.ToString());
                                 if (sP_Invoice_HistoryResult.Length > 0)
                                 {
-                                    Invoke(new System.Action(() => dataGridView1.Rows[i].Cells[7].Value = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Event_Name));
-                                    Invoke(new System.Action(() => dataGridView1.Rows[i].Cells[8].Value = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Comments));
-                                    Invoke(new System.Action(() => dataGridView1.Rows[i].Cells[9].Value = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventDate +
+                                    Invoke(new System.Action(() => dataGridView1.Rows[i].Cells[8].Value = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Event_Name));
+                                    Invoke(new System.Action(() => dataGridView1.Rows[i].Cells[9].Value = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].Comments));
+                                    Invoke(new System.Action(() => dataGridView1.Rows[i].Cells[10].Value = sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventDate +
                                                                     " " + sP_Invoice_HistoryResult[sP_Invoice_HistoryResult.Length - 1].EventTime));
                                 }
                             }
