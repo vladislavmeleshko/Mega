@@ -775,7 +775,7 @@
             // groupBox16
             // 
             this.groupBox16.Controls.Add(this.richTextBox10);
-            this.groupBox16.Location = new System.Drawing.Point(202, 0);
+            this.groupBox16.Location = new System.Drawing.Point(202, 3);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Size = new System.Drawing.Size(1232, 608);
             this.groupBox16.TabIndex = 8;
