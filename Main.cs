@@ -54,16 +54,16 @@ namespace Mega
                             if (newAPI.dateofreceipt != null)
                             {
                                 this.Invoke(new System.Action(() =>
-                                dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
+                                                    dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
                                                         sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment, newAPI.dateofreceipt,
-                                                        newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory, newAPI.adres)
+                                                        newAPI.otpravitel, newAPI.dateofdaydeveliery, newAPI.namehistory, newAPI.comment, newAPI.datetimehistory, newAPI.adres)
                                 ));
                             }
                             else
                                 this.Invoke(new System.Action(() =>
-                                dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
-                                                sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
-                                                "", "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory, newAPI.adres)
+                                                    dataGridView1.Rows.Add(sP_ListWayBillsResult[i].WBNumber, sP_ListWayBillsResult[i].ShipperAgent_Name, sP_ListWayBillsResult[i].ConsigneeAgent_Name,
+                                                        sP_ListWayBillsResult[i].ConsigneeCity_Name, newAPI.dateofshipment,
+                                                        "", newAPI.otpravitel, "", newAPI.namehistory, newAPI.comment, newAPI.datetimehistory, newAPI.adres)
                                 ));
                             this.Invoke(new System.Action(() =>
                                 label1.Text = string.Format("Обработано накладных {0} из {1}", (i + 1), sP_ListWayBillsResult.Length)
@@ -141,6 +141,7 @@ namespace Mega
         {
             try
             {
+                api.auth();
                 string WBNumber = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 DetailHistoryInvoice form = new DetailHistoryInvoice(WBNumber, api);
                 form.Show();
