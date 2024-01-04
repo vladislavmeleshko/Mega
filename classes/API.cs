@@ -363,6 +363,11 @@ namespace Mega.classes
             return mekus.me_ManifestCreate(login, DateTime.Today, "17:00", city, 17, 17, null, null, null, number_invoice, null, DateTime.Today, "18:00");
         }
 
+        public SP_Invoice_GenerResult[] get_invoice(string number)
+        {
+            return mekus.me_oneInvoice(login, number);
+        }
+
         public Report get_invoices_out_manifest(string[] number, int i)
         {
             SP_Invoice_GenerResult[] sP_Invoice_GenerResults = null;

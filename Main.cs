@@ -471,5 +471,34 @@ namespace Mega
                 }
             });
         }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (openFileDialog2.ShowDialog() == DialogResult.Cancel)
+                    return;
+                string filename = openFileDialog2.FileName;
+                string []fileText = File.ReadAllText(filename).Split('\n');
+                api.auth();
+                int count_invoice = 0;
+                int count_place = 0;
+                decimal obwii_vec = 0.000m;
+                for(int i = 0; i < fileText.Length; i++)
+                { 
+                    SP_Invoice_GenerResult[] invoice = api.get_invoice(fileText[i]);
+                    dataGridView2.Rows.Add(invoice[0].WBNumber, invoice[0].WBPackage, invoice[0].WBWeight, 
+                                            invoice[0].ConsigneeCity_Name, invoice[0].ConsigneeAdres, invoice[0].WBOpenDate.Value.Date.ToString("dd.MM.yyyy"),
+                                            invoice[0].WBDescription, invoice[0].WBCost, invoice[0].MoneyType);
+                    count_invoice++;
+                    count_place += Convert.ToInt32(invoice[0].WBPackage);
+                }
+                richTextBox11.Text = string.Format("Количество накладных: {0}\nКоличество мест: {1}\nОбщий вес: {2} кг.", count_invoice, count_place, obwii_vec);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
