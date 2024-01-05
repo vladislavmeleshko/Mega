@@ -99,21 +99,22 @@
             this.button12 = new System.Windows.Forms.Button();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.richTextBox9 = new System.Windows.Forms.RichTextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.button13 = new System.Windows.Forms.Button();
-            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+            this.richTextBox11 = new System.Windows.Forms.RichTextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.button13 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.richTextBox11 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -835,10 +836,6 @@
             this.richTextBox9.TabIndex = 0;
             this.richTextBox9.Text = "";
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // tabPage9
             // 
             this.tabPage9.Controls.Add(this.richTextBox11);
@@ -851,6 +848,35 @@
             this.tabPage9.Text = "Таможня";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
+            // richTextBox11
+            // 
+            this.richTextBox11.Location = new System.Drawing.Point(3, 324);
+            this.richTextBox11.Name = "richTextBox11";
+            this.richTextBox11.Size = new System.Drawing.Size(191, 287);
+            this.richTextBox11.TabIndex = 2;
+            this.richTextBox11.Text = "";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column13,
+            this.Column14,
+            this.Column15,
+            this.Column18,
+            this.Column22,
+            this.Column16,
+            this.Column17,
+            this.Column19,
+            this.Column20,
+            this.Column21});
+            this.dataGridView2.Location = new System.Drawing.Point(3, 32);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(1431, 286);
+            this.dataGridView2.TabIndex = 1;
+            // 
             // button13
             // 
             this.button13.AutoSize = true;
@@ -862,29 +888,13 @@
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // openFileDialog2
             // 
             this.openFileDialog2.FileName = "openFileDialog2";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column13,
-            this.Column14,
-            this.Column15,
-            this.Column16,
-            this.Column17,
-            this.Column18,
-            this.Column19,
-            this.Column20,
-            this.Column21});
-            this.dataGridView2.Location = new System.Drawing.Point(3, 32);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(1431, 286);
-            this.dataGridView2.TabIndex = 1;
             // 
             // Column13
             // 
@@ -893,51 +903,48 @@
             // 
             // Column14
             // 
-            this.Column14.HeaderText = "Кол-во";
+            this.Column14.HeaderText = "Кол-во мест";
             this.Column14.Name = "Column14";
             // 
             // Column15
             // 
-            this.Column15.HeaderText = "Вес";
+            this.Column15.HeaderText = "Вес отправления";
             this.Column15.Name = "Column15";
+            // 
+            // Column18
+            // 
+            this.Column18.HeaderText = "Страна отправителя";
+            this.Column18.Name = "Column18";
+            // 
+            // Column22
+            // 
+            this.Column22.HeaderText = "Получатель";
+            this.Column22.Name = "Column22";
             // 
             // Column16
             // 
-            this.Column16.HeaderText = "Город";
+            this.Column16.HeaderText = "Город получателя";
             this.Column16.Name = "Column16";
             // 
             // Column17
             // 
-            this.Column17.HeaderText = "Адрес";
+            this.Column17.HeaderText = "Адрес получателя";
             this.Column17.Name = "Column17";
-            // 
-            // Column18
-            // 
-            this.Column18.HeaderText = "Дата";
-            this.Column18.Name = "Column18";
             // 
             // Column19
             // 
-            this.Column19.HeaderText = "Описание";
+            this.Column19.HeaderText = "Описание отправления";
             this.Column19.Name = "Column19";
             // 
             // Column20
             // 
-            this.Column20.HeaderText = "Стоимость";
+            this.Column20.HeaderText = "Стоимость отправления";
             this.Column20.Name = "Column20";
             // 
             // Column21
             // 
             this.Column21.HeaderText = "Валюта";
             this.Column21.Name = "Column21";
-            // 
-            // richTextBox11
-            // 
-            this.richTextBox11.Location = new System.Drawing.Point(3, 324);
-            this.richTextBox11.Name = "richTextBox11";
-            this.richTextBox11.Size = new System.Drawing.Size(191, 287);
-            this.richTextBox11.TabIndex = 2;
-            this.richTextBox11.Text = "";
             // 
             // Main
             // 
@@ -1065,16 +1072,17 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.RichTextBox richTextBox11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
-        private System.Windows.Forms.RichTextBox richTextBox11;
     }
 }
 
