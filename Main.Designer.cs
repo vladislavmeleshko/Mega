@@ -109,6 +109,7 @@
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -866,6 +867,7 @@
             this.Column14,
             this.Column15,
             this.Column18,
+            this.Column23,
             this.Column22,
             this.Column16,
             this.Column17,
@@ -915,6 +917,11 @@
             // 
             this.Column18.HeaderText = "Страна отправителя";
             this.Column18.Name = "Column18";
+            // 
+            // Column23
+            // 
+            this.Column23.HeaderText = "Клиент";
+            this.Column23.Name = "Column23";
             // 
             // Column22
             // 
@@ -1077,6 +1084,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;

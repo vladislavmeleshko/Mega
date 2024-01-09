@@ -487,7 +487,7 @@ namespace Mega
                 for(int i = 0; i < fileText.Length; i++)
                 { 
                     SP_Invoice_GenerResult[] invoice = api.get_invoice(fileText[i]);
-                    dataGridView2.Rows.Add(invoice[0].WBNumber, invoice[0].WBPackage, invoice[0].WBWeight, "РФ", invoice[0].ConsigneeLastName,
+                    dataGridView2.Rows.Add(invoice[0].WBNumber, invoice[0].WBPackage, invoice[0].WBWeight, "РФ", invoice[0].ConsigneeCompany, invoice[0].ConsigneeLastName,
                                             invoice[0].ConsigneeCity_Name, invoice[0].ConsigneeAdres,
                                             invoice[0].WBDescription, invoice[0].WBCost, invoice[0].MoneyType);
                     count_invoice++;
